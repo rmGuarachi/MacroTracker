@@ -1,7 +1,9 @@
-package edu.qc.cs370.macrotracker;
+package edu.qc.cs370.macrotracker.Ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.qc.cs370.macrotracker.R;
 
 public class MainActivity extends AppCompatActivity {
 
