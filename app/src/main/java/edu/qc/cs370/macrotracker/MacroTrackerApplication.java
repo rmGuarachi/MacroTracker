@@ -2,10 +2,18 @@ package edu.qc.cs370.macrotracker;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 
 public class MacroTrackerApplication extends Application {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
@@ -46,6 +54,7 @@ public class MacroTrackerApplication extends Application {
 
             }
         });
+
 
 
     }
