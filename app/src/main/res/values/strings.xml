@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Macro Tracker</string>
+  <string name="app_name">Macro Tracker</string>
+  <string name="calories">Calories</string>
+  <string name="fat">Fat</string>
+  <string name="carbs">Carbs</string>
+  <string name="protein">Protein</string>
+  <string name="title_activity_summary">SummaryActivity</string>
+  <string name="nav_summary">Summary</string>
+  <string name="nav_reports">Reports</string>
+  <string name="nav_settings">Settings</string>
 </resources>
