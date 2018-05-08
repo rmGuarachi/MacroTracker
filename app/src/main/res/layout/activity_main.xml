@@ -1,181 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    tools:context=".Ui.MainActivity">
+    tools:context=".Ui.MainActivity"
+  android:id="@+id/relativeLayout">
 
-    <TextView
-        android:id="@+id/dailyMacroTextViewLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Today's Macros"
-        android:textSize="30sp" />
 
+  <TextView
+    android:id="@+id/currentDateTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:text="Current Date"
+    android:textSize="36sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <LinearLayout
+    android:id="@+id/graphLayout"
+    android:layout_width="0dp"
+    android:layout_height="240dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/currentDateTextView">
+
+    <com.jjoe64.graphview.GraphView
+      android:id="@+id/graph"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+  </LinearLayout>
+
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/addMealBtn"
+    android:layout_width="40dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginEnd="8dp"
+    android:clickable="true"
+    app:backgroundTint="@color/colorPrimary"
+    app:layout_constraintBottom_toTopOf="@+id/navigation"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:srcCompat="@drawable/ic_photo_camera"/>
+  <LinearLayout
+    android:id="@+id/macrosLayout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/graphLayout">
     <LinearLayout
+      android:id="@+id/fatLayout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="vertical"
+      >
+      <TextView
+        android:id="@+id/fatTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dailyMacroTextViewLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/fat"
+        android:textSize="24sp"
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fatTextViewLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="FAT" />
-
-            <TextView
-                android:id="@+id/FatTextViewValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="2.8"
-                android:textSize="24sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/carbTextViewLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="CARB" />
-
-            <TextView
-                android:id="@+id/carbTextViewValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="39"
-                android:textSize="24sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/proteinTextViewLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="PROTEIN" />
-
-            <TextView
-                android:id="@+id/proteinTextViewValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="9.3"
-                android:textSize="24sp" />
-        </LinearLayout>
+        />
+      <TextView
+        android:id="@+id/remainingFat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="current/remaining"/>
     </LinearLayout>
-
     <LinearLayout
+      android:id="@+id/carbsLayout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="2"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/carbsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="162dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/addEntriesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="ADD ENTRIES" />
-
-    </LinearLayout>
-
-    <TableLayout
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/carbs"
+        android:textSize="24sp"/>
+      <TextView
+        android:id="@+id/remainingCarbs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="225dp">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="current/remaining"/>
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/proteinLayout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="3"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/proteinTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/protein"
+        android:textSize="24sp"/>
+      <TextView
+        android:id="@+id/remainingProtein"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="current/remaining"/>
+    </LinearLayout>
+  </LinearLayout>
 
-        <TableRow
-            android:id="@+id/t_entriesTextViewLabel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="2dp">
+  <android.support.design.widget.BottomNavigationView
+    android:id="@+id/navigation"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    app:itemIconTint="#ffffff"
+    app:itemTextColor="#ffffff"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:itemBackground="@color/colorPrimary"
+    app:menu="@menu/navigation"/>
 
-            <TextView
-                android:id="@+id/t_entriesTextViewLabel1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="ENTRIES"
-                android:textSize="14sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/t_nameTextViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Name" />
-
-            <TextView
-                android:id="@+id/t_servingTextViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Serving" />
-
-            <TextView
-                android:id="@+id/t_fatTextViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="F" />
-
-            <TextView
-                android:id="@+id/t_carbTextViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="C" />
-
-            <TextView
-                android:id="@+id/t_proteinTextViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="P" />
-        </TableRow>
-
-    </TableLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
