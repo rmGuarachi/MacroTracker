@@ -41,6 +41,8 @@
       android:clickable="true"
       android:focusable="true"
       android:onClick="addMeal"
+      app:srcCompat="@drawable/ic_add_white_24dp"
+      app:elevation="0dp"
       app:backgroundTint="@android:color/holo_red_dark"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"/>
