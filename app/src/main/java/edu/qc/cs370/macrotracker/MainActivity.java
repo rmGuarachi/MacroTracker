@@ -16,20 +16,10 @@ import edu.qc.cs370.macrotracker.fragments.SummaryFragment;
 public class MainActivity extends AppCompatActivity {
 
   FragmentManager fragmentManager = getSupportFragmentManager();
-  private TextView mTextMessage;
+  private TextView textMessage;
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
-    /*
-    Bottom navigation not working at the moment, getting the following error:
-
-    java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.TextView.setText(int)' on a null object reference
-        at edu.qc.cs370.macrotracker.MainActivity$1.onNavigationItemSelected(MainActivity.java:32)
-
-    Solution at: https://stackoverflow.com/questions/34892929/attempt-to-invoke-virtual-method-void-android-widget-textview-settextjava-lang
-
-    -DV
-    */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -59,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     // Serve up the summary fragment automatically
     switchToSummaryFragment(fragmentManager);
 
-    mTextMessage = (TextView) findViewById(R.id.message);
-    BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+    textMessage = findViewById(R.id.message);
+    BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
   }
 

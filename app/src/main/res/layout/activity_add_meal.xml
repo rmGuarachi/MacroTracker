@@ -42,7 +42,8 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.905"
     app:layout_constraintStart_toEndOf="@+id/foodSearchBar"
-    app:layout_constraintTop_toBottomOf="@+id/searchBarTitle"/>
+    app:layout_constraintTop_toBottomOf="@+id/searchBarTitle"
+    app:layout_constraintVertical_bias="0.0"/>
   <android.support.constraint.ConstraintLayout
     android:id="@+id/mealContainer"
     android:layout_width="0dp"
@@ -69,7 +70,6 @@
         android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="Name of scanned food"
         android:inputType="textPersonName"
@@ -81,7 +81,6 @@
         android:id="@+id/weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="grams"
         android:inputType="number"
@@ -94,8 +93,8 @@
         android:id="@+id/foodDetailsLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +104,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:gravity="left|center_vertical"
+          android:gravity="center_vertical|start"
           android:orientation="vertical">
 
           <TextView
@@ -130,7 +129,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:gravity="left|center_vertical"
+          android:gravity="center_vertical|start"
           android:orientation="vertical">
 
           <TextView
@@ -182,7 +181,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:gravity="left|center_vertical"
+          android:gravity="center_vertical|start"
           android:orientation="vertical">
 
           <TextView

@@ -2,7 +2,9 @@ package edu.qc.cs370.macrotracker;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +31,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
   BarcodeDetector barcodeDetector;
   CameraSource cameraSource;
   final int RequestCameraPermissionID = 1001;
+  boolean vibrated = false;
 
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -80,9 +83,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
       }
 
       @Override
-      public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-      }
+      public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
 
       @Override
       public void surfaceDestroyed(SurfaceHolder holder) {
@@ -99,15 +100,26 @@ public class BarcodeScannerActivity extends AppCompatActivity {
       @Override
       public void receiveDetections(Detector.Detections<Barcode> detections) {
         final SparseArray<Barcode> barcode = detections.getDetectedItems();
-        if (barcode.size() != 0){
+        if (barcode.size() != 0) {
           resultText.post(new Runnable() {
             @Override
             public void run() {
               Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-              vibrator.vibrate(200);
+              if (!vibrated) {
+                vibrator.vibrate(200);
+              }
               resultText.setText("Barcode: " + barcode.valueAt(0).displayValue);
+              vibrated = true;
             }
           });
+
+          // Retreiving the UPC
+          String upc = barcode.valueAt(0).displayValue;
+          // Sending back the UPC
+          Intent intent = new Intent();
+          intent.putExtra("upc", upc);
+          setResult(RESULT_OK, intent);
+          finish();
         }
       }
     });
