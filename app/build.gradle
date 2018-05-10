@@ -34,7 +34,8 @@ dependencies {
     // Barcode scanner dependency added by RG
     implementation 'com.google.android.gms:play-services-vision:12.0.1'
     implementation 'com.android.support:multidex:1.0.1'
-    // Cardview dependency added by LX
-    // Changed the version from 27.1.0 to 27.1.1 by DV
+    // Cardview dependency added by LX, changed the version from 27.1.0 to 27.1.1 by DV
     implementation 'com.android.support:cardview-v7:27.1.1'
+    // MPAndroidChart dependency added by DV
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }

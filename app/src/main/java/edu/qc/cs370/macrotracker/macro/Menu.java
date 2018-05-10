@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+// Applied the below decorator to prevent a warning about DateTimeFormatter needed min sdk 26. - DV
 @TargetApi(26)
 public class Menu {
 	static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("dd/MM");

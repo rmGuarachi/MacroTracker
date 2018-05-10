@@ -2,5 +2,9 @@
 <resources>
   <color name="colorPrimary">#3f51b5</color>
   <color name="colorPrimaryDark">#303F9F</color>
-  <color name="colorAccent">#FF4081</color>
+  <color name="colorAccent">#40b6ff</color>
+  <color name="colorBlack">#000000</color>
+  <color name="colorFat">#ffb300</color>
+  <color name="colorCarbs">#bbff00</color>
+  <color name="colorProtein">#c58bff</color>
 </resources>
