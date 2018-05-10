@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Macro Tracker</string>
-    <string name="menu_Date">TODAY</string>
-    <string name="menu_Cal">0 / 2400 cals</string>
-    <string name="menu_Carb">0 / 800 g</string>
-    <string name="menu_Protein">0 / 800 g</string>
-    <string name="menu_Fat">0 / 400 g</string>
-</resources>
