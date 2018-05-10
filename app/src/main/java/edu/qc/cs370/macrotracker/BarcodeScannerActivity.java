@@ -57,7 +57,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     setContentView(R.layout.activity_barcode_scanner);
 
     cameraPreview = findViewById(R.id.cameraPreview);
-    resultText = findViewById(R.id.textResult);
+    // resultText = findViewById(R.id.textResult);
 
     barcodeDetector = new BarcodeDetector
         .Builder(this)
@@ -101,6 +101,19 @@ public class BarcodeScannerActivity extends AppCompatActivity {
       public void receiveDetections(Detector.Detections<Barcode> detections) {
         final SparseArray<Barcode> barcode = detections.getDetectedItems();
         if (barcode.size() != 0) {
+          new Runnable() {
+            @Override
+            public void run() {
+              Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+              if (!vibrated) {
+                vibrator.vibrate(200);
+              }
+              vibrated = true;
+            }
+          };
+
+          // Commenting the below code out because it was just for testing purposes, by DV
+          /*
           resultText.post(new Runnable() {
             @Override
             public void run() {
@@ -108,12 +121,13 @@ public class BarcodeScannerActivity extends AppCompatActivity {
               if (!vibrated) {
                 vibrator.vibrate(200);
               }
-              resultText.setText("Barcode: " + barcode.valueAt(0).displayValue);
+              // resultText.setText("Barcode: " + barcode.valueAt(0).displayValue);
               vibrated = true;
             }
           });
+          */
 
-          // Retreiving the UPC
+          // Retrieving the UPC
           String upc = barcode.valueAt(0).displayValue;
           // Sending back the UPC
           Intent intent = new Intent();
@@ -121,6 +135,8 @@ public class BarcodeScannerActivity extends AppCompatActivity {
           setResult(RESULT_OK, intent);
           finish();
         }
+        // TODO create an else block that will send back a sentinel value if the barcode is not the correct UPC format
+        // TODO the sentinel value will be checked during the API call to inform the user to search via the hot search.
       }
     });
   }

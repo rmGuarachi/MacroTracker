@@ -14,14 +14,18 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.qc.cs370.macrotracker.R;
+import java.util.Date;
 import java.util.List;
 
 public class SummaryFragment extends Fragment {
-  Calendar calendar = Calendar.getInstance();
+  Date currentDate = Calendar.getInstance().getTime();
+  SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMM dd, yyyy");
+  String formattedDate;
 
   public SummaryFragment() {
     // Required constructor
@@ -36,18 +40,16 @@ public class SummaryFragment extends Fragment {
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     // Setting up the current date
-    int month = calendar.get(Calendar.MONTH) + 1;
-    int day = calendar.get(Calendar.DAY_OF_MONTH);
-    int year = calendar.get(Calendar.YEAR);
+    formattedDate = dateFormatter.format(currentDate);
 
     TextView currentDate = getView().findViewById(R.id.currentDate);
-    currentDate.setText(month + "/" + day + "/" + year);
+    currentDate.setText(formattedDate);
 
     // Begin pie chart code
     PieChart pieChart = getView().findViewById(R.id.pieChart);
-    float currentFat = 45.0f;
-    float currentCarbs = 195.0f;
-    float currentProtein = 115.0f;
+    float currentFat = 29.0f;
+    float currentCarbs = 168.0f;
+    float currentProtein = 120.0f;
 
     List<PieEntry> entries = new ArrayList<>();
     entries.add(new PieEntry(currentFat, "Fat"));
