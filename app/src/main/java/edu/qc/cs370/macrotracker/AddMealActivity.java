@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 public class AddMealActivity extends AppCompatActivity {
 //  LinearLayout listOfCurrentFoodInMeal = findViewById(R.id.listOfCurrentFoodInMeal);
@@ -17,6 +20,16 @@ public class AddMealActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_meal);
+
+    ArrayList<String> foodItems = new ArrayList<>();
+    foodItems.add("Grilled chicken (4 oz): 188/7/0/26");
+    foodItems.add("Cooked white rice (200 g): 253/0/56/5");
+    foodItems.add("Steamed vegetables (300 g): 106/1/24/6");
+
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodItems);
+
+    ListView foodItemsList = findViewById(R.id.foodItemsList);
+    foodItemsList.setAdapter(adapter);
   }
 
   @Override

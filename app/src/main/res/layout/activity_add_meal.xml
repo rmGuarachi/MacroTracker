@@ -215,20 +215,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/foodInformationLayout">
 
-      <LinearLayout
-        android:id="@+id/listOfCurrentFoodInMeal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/addFoodToMealBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-      </LinearLayout>
       <Button
         android:id="@+id/addFoodToMealBtn"
         android:layout_width="0dp"
@@ -240,7 +226,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listOfCurrentFoodInMeal"/>
+        />
+      <ListView
+        android:id="@+id/foodItemsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/addFoodToMealBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     </android.support.constraint.ConstraintLayout>
   </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

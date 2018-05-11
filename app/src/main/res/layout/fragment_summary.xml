@@ -43,88 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-      <LinearLayout
-        android:id="@+id/todaysMeals"
+
+      <ListView
+        android:id="@+id/mealsOfTheDayList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pieChart">
-        <LinearLayout
-          android:id="@+id/breakfastMeal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:orientation="horizontal">
-          <TextView
-            android:id="@+id/breakfastTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingStart="8dp"
-            android:gravity="center|start"
-            android:text="Breakfast"
-            android:textSize="24sp"/>
-          <TextView
-            android:id="@+id/breakfastMealMacros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|start"
-            android:text="465/11/58/32"
-            android:textSize="24sp"/>
-        </LinearLayout>
-        <LinearLayout
-          android:id="@+id/lunchMeal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:orientation="horizontal">
-          <TextView
-            android:id="@+id/lunchTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingStart="8dp"
-            android:gravity="center|start"
-            android:text="Lunch"
-            android:textSize="24sp"/>
-          <TextView
-            android:id="@+id/lunchMealMacros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|start"
-            android:text="410/15/35/38"
-            android:textSize="24sp"/>
-        </LinearLayout>
-        <LinearLayout
-          android:id="@+id/dinnerMeal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:orientation="horizontal">
-          <TextView
-            android:id="@+id/dinnerTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingStart="8dp"
-            android:gravity="center|start"
-            android:text="Dinner"
-            android:textSize="24sp"/>
-          <TextView
-            android:id="@+id/dinnerMealMacros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|start"
-            android:text="535/3/75/50"
-            android:textSize="24sp"/>
-        </LinearLayout>
-      </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/pieChart"/>
 
     </android.support.constraint.ConstraintLayout>
   </android.support.constraint.ConstraintLayout>

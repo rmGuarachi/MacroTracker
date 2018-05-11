@@ -7,6 +7,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -34,7 +36,20 @@ public class SummaryFragment extends Fragment {
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_summary, parent, false);
+    View view = inflater.inflate(R.layout.fragment_summary, parent, false);
+
+    ArrayList<String> meals = new ArrayList<>();
+    meals.add("Breakfast: 465/12/58/32");
+    meals.add("Lunch: 410/15/35/38");
+    meals.add("Dinner: 535/3/75/50");
+
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, meals);
+
+    // TODO Fix the floating action button not playing nice with the listview inside the fragment
+    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+    mealsOfTheDayList.setAdapter(adapter);
+
+    return view;
   }
 
   @Override
