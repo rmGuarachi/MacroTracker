@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -22,7 +23,10 @@ import java.util.Calendar;
 
 import edu.qc.cs370.macrotracker.R;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class SummaryFragment extends Fragment {
   Date currentDate = Calendar.getInstance().getTime();
@@ -38,6 +42,7 @@ public class SummaryFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_summary, parent, false);
 
+    /*
     ArrayList<String> meals = new ArrayList<>();
     meals.add("Breakfast: 465/12/58/32");
     meals.add("Lunch: 410/15/35/38");
@@ -47,6 +52,32 @@ public class SummaryFragment extends Fragment {
 
     // TODO Fix the floating action button not playing nice with the listview inside the fragment
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+    mealsOfTheDayList.setAdapter(adapter);
+    */
+
+    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+    HashMap<String, String> mealsList = new HashMap<>();
+    mealsList.put("Breakfast", "465/12/58/32");
+    mealsList.put("Lunch", "410/15/35/38");
+    mealsList.put("Dinner", "535/3/75/50");
+
+    List<HashMap<String, String>> listItems = new ArrayList<>();
+    SimpleAdapter adapter = new SimpleAdapter(
+        getContext(),
+        listItems,
+        R.layout.list_item,
+        new String[] {"First Line", "Second Line"},
+        new int[] {R.id.mainItemTitle, R.id.subItemTitle});
+
+    Iterator it = mealsList.entrySet().iterator();
+    while(it.hasNext()) {
+      HashMap<String, String> resultsMap = new HashMap<>();
+      Map.Entry pair = (Map.Entry) it.next();
+      resultsMap.put("First Line", pair.getKey().toString());
+      resultsMap.put("Second Line", pair.getValue().toString());
+      listItems.add(resultsMap);
+    }
+
     mealsOfTheDayList.setAdapter(adapter);
 
     return view;

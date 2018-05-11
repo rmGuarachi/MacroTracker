@@ -4,7 +4,8 @@ public class Food {
 	protected int foodId;
 	protected String foodName;
 	protected double weight, calorie, carb, protein, fat;
-	
+
+	// Constructor without weight
 	public Food(int id, String name, double calorie, double carb, double protein, double fat) {
 		this.foodId = id;
 		this.foodName = name;
@@ -13,7 +14,8 @@ public class Food {
 		this.protein = protein;
 		this.fat = fat;
 	}
-	
+
+	// Constructor with weight
 	public Food(int id, String name, double calorie, double carb, double protein, double fat, double weight) {
 		this.foodId = id;
 		this.foodName = name;
@@ -23,7 +25,7 @@ public class Food {
 		this.fat = fat;
 		this.weight = weight;
 	}
-	
+
 	public String toString() {
 		String json = "{ \"id\":" + foodId + ", \"name\":\"" + foodName + "\", " + "\"weight\": " + weight + ", "
 				+ "\"calories\": " + getCalorie() + ", " + "\"carb\":" + getCarb() + ", "
@@ -86,6 +88,4 @@ public class Food {
 	public void setFat(double fat) {
 		this.fat = fat;
 	}
-	
-	
 }

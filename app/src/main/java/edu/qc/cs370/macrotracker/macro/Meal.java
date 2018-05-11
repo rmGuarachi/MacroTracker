@@ -4,12 +4,17 @@ import java.util.ArrayList;
 public class Meal {
 	ArrayList<Food> foods;
 	String mealName;
-	
+
+	// The constructor should require a meal name, commenting out the below for now. - DV
+  /*
 	public Meal() {
 		foods = new ArrayList<Food>();
 	}
+	*/
 	
 	public Meal(String mealName) {
+	  // Adding the initialization of the foods ArrayList from the above constructor. - DV
+    foods = new ArrayList<>();
 		this.mealName = mealName;
 	}
 	
@@ -53,7 +58,7 @@ public class Meal {
 		return foods;
 	}
 
-	public void setFoods(ArrayList<Food> foods) {
+  public void setFoods(ArrayList<Food> foods) {
 		this.foods = foods;
 	}
 
