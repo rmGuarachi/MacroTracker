@@ -45,28 +45,31 @@ public class Meal {
 		}
 		return protein;
 	}
-	
-	public double getFat() {
-		double fat = 0;
-		for(Food food: foods) {
-			fat += food.getFat();
-		}
-		return fat;
-	}
 
-	public ArrayList<Food> getFoods() {
+  public double getFat() {
+    double fat = 0;
+    for(Food food: foods) {
+	  fat += food.getFat();
+    }
+   return fat;
+  }
+
+  public ArrayList<Food> getFoods() {
 		return foods;
 	}
 
   public void setFoods(ArrayList<Food> foods) {
-		this.foods = foods;
-	}
+    this.foods = foods;
+  }
+  public String getMealName() {
+    return mealName;
+  }
 
-	public String getMealName() {
-		return mealName;
-	}
+  public void setMealName(String mealName) {
+    this.mealName = mealName;
+  }
 
-	public void setMealName(String mealName) {
-		this.mealName = mealName;
-	}
+  public String toString() {
+	    return getCalorie() + "/" + getCarb() + "/" + getProtein() + "/" + getFat();
+  }
 }
