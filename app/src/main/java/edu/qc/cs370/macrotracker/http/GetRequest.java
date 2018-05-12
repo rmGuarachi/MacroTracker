@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class GetRequest {
   // Initialize the requestQueue, used for actually sending out the response.
   private static RequestQueue requestQueue;
-  // Initalize the stringRequest, this will be changed to JSONRequest later on.
+  // Initialize the stringRequest, this will be changed to JSONRequest later on.
   private static StringRequest stringRequest;
   // Initializing a variable to set the incoming TextView to, from the calling activity.
   private static TextView textView;

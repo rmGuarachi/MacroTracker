@@ -30,18 +30,6 @@ public class SettingsFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_settings, parent, false);
 
-    /*
-    ArrayList<String> settingsOptions = new ArrayList<>();
-    settingsOptions.add("Calories");
-    settingsOptions.add("Fat");
-    settingsOptions.add("Carbs");
-    settingsOptions.add("Protein");
-
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1, settingsOptions);
-    ListView settingsList = view.findViewById(R.id.settingsList);
-    settingsList.setAdapter(adapter);
-    */
-
     ListView settingsList = view.findViewById(R.id.settingsList);
 
     HashMap<String, String> settingOptionsWithEnteredInfo = new HashMap<>();

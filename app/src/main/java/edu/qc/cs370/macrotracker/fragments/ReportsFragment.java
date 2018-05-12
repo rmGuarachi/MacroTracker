@@ -27,23 +27,11 @@ public class ReportsFragment extends Fragment {
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_reports, parent, false);
+    View view = inflater.inflate(R.layout.fragment_reports, parent, false);
+    TextView testText = view.findViewById(R.id.testText);
+    String url = "https://jsonplaceholder.typicode.com/users/1";
 
-    // TODO try to figure out how to incorporate an onClick attribute for HTTP requests
-    // TODO instead of having to use onClickListeners (since they force you to declare
-    // TODO variables as final, etc.) - DV
-
-    Button requestBtn = view.findViewById(R.id.requestBtn);
-    final TextView testText = view.findViewById(R.id.testText);
-    final String url = "https://jsonplaceholder.typicode.com/users/1";
-
-    requestBtn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        // The below returns a string response, as opposed to a JSON object response, for testing purposes. - DV
-        GetRequest.testRequest(getContext(), testText, url);
-      }
-    });
+    GetRequest.testRequest(getContext(), testText, url);
 
     return view;
   }

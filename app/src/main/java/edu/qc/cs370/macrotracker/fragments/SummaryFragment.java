@@ -42,19 +42,6 @@ public class SummaryFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_summary, parent, false);
 
-    /*
-    ArrayList<String> meals = new ArrayList<>();
-    meals.add("Breakfast: 465/12/58/32");
-    meals.add("Lunch: 410/15/35/38");
-    meals.add("Dinner: 535/3/75/50");
-
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, meals);
-
-    // TODO Fix the floating action button not playing nice with the listview inside the fragment
-    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
-    mealsOfTheDayList.setAdapter(adapter);
-    */
-
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     HashMap<String, String> mealsList = new HashMap<>();
     mealsList.put("Breakfast", "465/12/58/32");
