@@ -4,7 +4,7 @@
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#40b6ff</color>
   <color name="colorBlack">#000000</color>
-  <color name="colorFat">#ffb300</color>
-  <color name="colorCarbs">#bbff00</color>
-  <color name="colorProtein">#c58bff</color>
+  <color name="colorFat">#CFD8DC</color>
+  <color name="colorCarbs">#B0BEC5</color>
+  <color name="colorProtein">#90A4AE</color>
 </resources>
