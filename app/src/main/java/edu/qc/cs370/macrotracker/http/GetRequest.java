@@ -1,44 +1,84 @@
 package edu.qc.cs370.macrotracker.http;
 
 import android.content.Context;
+import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import android.view.View;
 import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/*   URL FORMAT
+       UPC search - http://ec2-18-188-255-3.us-east-2.compute.amazonaws.com:8080/MacroTrackerServletv1/foodupc?upc={ENTER UPC HERE}
+       Name search - http://ec2-18-188-255-3.us-east-2.compute.amazonaws.com:8080/MacroTrackerServletv1/foods?name={ENTER NAME HERE}
+ */
 
 public class GetRequest {
   // Initialize the requestQueue, used for actually sending out the response.
   private static RequestQueue requestQueue;
-  // Initialize the stringRequest, this will be changed to JSONRequest later on.
-  private static StringRequest stringRequest;
+  // Initialize the JsonObjectRequest, this will be changed to JSONRequest later on.
+  private static JsonObjectRequest jsonRequest;
   // Initializing a variable to set the incoming TextView to, from the calling activity.
-  private static TextView textView;
+  private static TextView[] views;
 
-  public static void testRequest(Context context, TextView text, String url) {
+  public static void getViaUPC(Context context, TextView[] foodInfoViews, String upc) {
+    // The URL endpoint for UPC API calls
+    String url = "http://ec2-18-188-255-3.us-east-2.compute.amazonaws.com:8080/MacroTrackerServletv1/foodupc?upc=" + upc;
+
     // Setting the RequestQueue variable to the context of the calling fragment.
     requestQueue = Volley.newRequestQueue(context);
-    // Setting the TextView variable to the view of the calling fragment.
-    textView = text;
+    // Setting up the TextView array to set the information from this method
+    views = foodInfoViews;
+
     // The actual request to the API
-    stringRequest = new StringRequest(Request.Method.GET, url, new Listener<String>() {
+    jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Listener<JSONObject>() {
       @Override
-      public void onResponse(String response) {
-        // On successful reponse, set the TextView to the entire output of the response (in this case, JSON).
-        textView.setText(response.toString());
+      public void onResponse(JSONObject response) {
+        // On successful response, set the TextView to the entire output of the response (in this case, JSON).
+        try {
+          // Deconstructing the json data into separate strings and then setting the textview to the newly formatted info.
+
+          // Parsing the name of the food item; capitalizing the first letter, lowercasing the remaining name, and removing the UPC
+          String foodName = response.getString("name").toLowerCase();
+          foodName = foodName.substring(0, 1).toUpperCase() + foodName.substring(1, foodName.indexOf(","));
+          views[0].setText(foodName);
+
+          String foodCals = response.getString("Energy");
+          // foodCals = foodCals.substring(0, foodCals.indexOf("."));
+          views[1].setText(foodCals);
+
+          // Very sloppy way of removing the decimal point from the fat, carbs, and protein to fix inside the text views.
+          String foodFat = response.getString("Total lipid (fat)");
+          foodFat = foodFat.substring(0, foodFat.indexOf("."));
+          views[2].setText(foodFat);
+
+          String foodCarbs = response.getString("Carbohydrate, by difference");
+          foodCarbs = foodCarbs.substring(0, foodCarbs.indexOf("."));
+          views[3].setText(foodCarbs);
+
+          String foodProtein = response.getString("Protein");
+          foodProtein = foodProtein.substring(0, foodProtein.indexOf("."));
+          views[4].setText(foodProtein);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
       }
-    }, new ErrorListener() {
+    }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-        textView.setText(error.toString());
+        error.printStackTrace();
       }
     });
 
-    // Add the StringRequest to the queue -- this is what actually makes the request! This is also asynchronous.
-    requestQueue.add(stringRequest);
+    // Add the JsonObjectRequest to the queue -- this is what actually makes the request! This is also asynchronous.
+    requestQueue.add(jsonRequest);
   }
 }

@@ -28,10 +28,6 @@ public class ReportsFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_reports, parent, false);
-    TextView testText = view.findViewById(R.id.testText);
-    String url = "https://jsonplaceholder.typicode.com/users/1";
-
-    GetRequest.testRequest(getContext(), testText, url);
 
     return view;
   }
