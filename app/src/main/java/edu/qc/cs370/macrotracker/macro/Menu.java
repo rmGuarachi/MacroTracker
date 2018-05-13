@@ -30,7 +30,7 @@ public class Menu {
 
 
 	// The constructor should take in a menu name argument, in over to display breakfast, lunch, dinner, etc. - DV
-	// This constructor should only be used for implementation of saved and shared meals. -LX
+	// This constructor should only be used for implementation of saved and shared meals. -LX depre.
 	public Menu(String menuName) {
 		this.menuName = menuName;
 		meals = new ArrayList<Meal>();

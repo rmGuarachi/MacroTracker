@@ -6,7 +6,8 @@ public class Profile {
 	int calorie;
 	double carb, protein, fat, water;
 	ArrayList<Menu> menu;
-	
+
+	//This constructor intended to accept target calorie, carb, protein, fat. - LX
 	public Profile(int calorie, double carb, double protein, double fat) {
 		this.calorie = calorie;
 		this.carb = carb;
@@ -66,4 +67,12 @@ public class Profile {
 	public void setFat(double fat) {
 		this.fat = fat;
 	}
+
+	//Adding this method to be able to retrieve/recreate Profile settings - LX
+	public String toJSON() {
+		String json = "{ \"calorie\": " + getCalorie() + ", " + "\"carb\":" + getCarb() + ", "
+				+ "\"protein\":" + getProtein() + ", " + "\"fat\":" + getFat() + " }";
+		return json;
+	}
+
 }

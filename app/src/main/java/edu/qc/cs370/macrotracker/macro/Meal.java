@@ -14,7 +14,7 @@ public class Meal {
 
 	public Meal(String mealName) {
 	  // Adding the initialization of the foods ArrayList from the above constructor. - DV
-    foods = new ArrayList<>();
+    	foods = new ArrayList<>();
 		this.mealName = mealName;
 	}
 

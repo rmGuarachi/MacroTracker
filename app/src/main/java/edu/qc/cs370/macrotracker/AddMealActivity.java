@@ -58,7 +58,8 @@ public class AddMealActivity extends AppCompatActivity {
     */
 
     //Populate Menu from a given Menu' meal - LX
-    List<Food> tar_meal = meal.getFoods();
+    //tar_meal no longer used, Meal object's food list is directly passed to ArrayAdapter -LX
+    //List<Food> tar_meal = meal.getFoods();
 
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
     // TODO The hashmap was for mapping the elements into the custom list_item layout, we can
@@ -66,7 +67,11 @@ public class AddMealActivity extends AppCompatActivity {
     // TODO layout; simple_list_item_1 is currently printing the entire food Object to string as a
     // TODO JSON object for some reason. Need to read the docs to see if that's the adapter or the
     // TODO the ListView layout. - DV
-    adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tar_meal);
+    //
+    // Food object's have a toString() that print out the object as a JSON object.
+    // This was intended for the web app we originally spoke of. - LX
+
+    adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, meal.getFoods());
     foodItemsList.setAdapter(adapter);
   }
 
@@ -87,6 +92,11 @@ public class AddMealActivity extends AppCompatActivity {
     TextView amountOfProtein = findViewById(R.id.amountOfProtein);
     TextView[] foodInformationViews = {foodName, amountOfCalories, amountOfFat, amountOfCarbs, amountOfProtein};
 
+    //Set default weight of food to 100g initially. -LX
+    //This default weight should/could later be changed to the USDA recommended serving size - LX
+    TextView weightOfFood = findViewById(R.id.weight);
+    weightOfFood.setText("100");
+
     GetRequest.getViaUPC(this, foodInformationViews, scannedUPC);
   }
 
@@ -104,14 +114,17 @@ public class AddMealActivity extends AppCompatActivity {
     TextView amountOfFat = findViewById(R.id.amountOfFat);
     TextView amountOfCarbs = findViewById(R.id.amountOfCarbs);
     TextView amountOfProtein = findViewById(R.id.amountOfProtein);
+    TextView weightOfFood = findViewById(R.id.weight); //Enter weight of food.
 
     String fdName = foodName.getText().toString();
     double fdCals = Double.parseDouble(amountOfCalories.getText().toString());
     double fdFat = Double.parseDouble(amountOfFat.getText().toString());
     double fdCarbs = Double.parseDouble(amountOfCarbs.getText().toString());
     double fdProtein = Double.parseDouble(amountOfProtein.getText().toString());
+    //Enter wieght of food.
+    double fdWeight = Double.parseDouble(weightOfFood.getText().toString());
 
-    Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein);
+    Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein, fdWeight);
     Log.i("AddedFood", food.getNameAndWeight() + ", " + food.getSlashLine());
     meal.addFood(food);
     adapter.notifyDataSetChanged();
