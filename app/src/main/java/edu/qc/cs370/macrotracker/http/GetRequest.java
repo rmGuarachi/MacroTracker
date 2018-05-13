@@ -55,16 +55,33 @@ public class GetRequest {
 
           // Very sloppy way of removing the decimal point from the fat, carbs, and protein to fit inside the text views.
           String foodFat = response.getString("Total lipid (fat)");
-          foodFat = foodFat.substring(0, foodFat.indexOf("."));
+
+          if (foodFat.compareTo("--") != 0 && foodFat.indexOf(".") != -1) {
+            foodFat = foodFat.substring(0, foodFat.indexOf("."));
+          } else {
+            foodFat = "0";
+          }
           views[2].setText(foodFat);
 
           String foodCarbs = response.getString("Carbohydrate, by difference");
-          foodCarbs = foodCarbs.substring(0, foodCarbs.indexOf("."));
+
+          if (foodCarbs.compareTo("--") != 0 && foodCarbs.indexOf(".") != -1) {
+            foodCarbs = foodCarbs.substring(0, foodCarbs.indexOf("."));
+          } else {
+            foodCarbs = "0";
+          }
           views[3].setText(foodCarbs);
 
           String foodProtein = response.getString("Protein");
-          foodProtein = foodProtein.substring(0, foodProtein.indexOf("."));
+
+          if (foodProtein.compareTo("--") != 0 && foodProtein.indexOf(".") != -1) {
+            foodProtein = foodProtein.substring(0, foodProtein.indexOf("."));
+          } else {
+            foodProtein = "0";
+          }
           views[4].setText(foodProtein);
+
+          Log.i("ScannedFood", response.toString());
         } catch (JSONException e) {
           e.printStackTrace();
         }

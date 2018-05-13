@@ -79,7 +79,7 @@ public class SummaryFragment extends Fragment {
 
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-    ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.list_item, today_Menu);
+    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, today_Menu);
 
     mealsOfTheDayList.setAdapter(adapter);
 
@@ -96,11 +96,16 @@ public class SummaryFragment extends Fragment {
 
     // Begin pie chart code
     PieChart pieChart = getView().findViewById(R.id.pieChart);
-
+    /* We will use the below code, but leaving up dummy data for now. - DV
     // Using methods provided by Menu, Meal classes - LX
     float currentFat = (float) menu.getFat();
     float currentCarbs = (float) menu.getCarb();
     float currentProtein = (float) menu.getCalorie();
+    */
+
+    float currentFat = 45.0f;
+    float currentCarbs = 195.0f;
+    float currentProtein = 115.0f;
 
     List<PieEntry> entries = new ArrayList<>();
     entries.add(new PieEntry(currentFat, "Fat"));

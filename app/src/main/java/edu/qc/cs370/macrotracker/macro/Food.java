@@ -1,12 +1,13 @@
 package edu.qc.cs370.macrotracker.macro;
 
 public class Food {
-	protected int foodId;
+	// Changed foodId from int to String because UPC may have a leading 0 and that will cause Interger.parseInt(String s) to throw an error
+	protected String foodId;
 	protected String foodName;
-	protected double weight, calorie, carb, protein, fat;
+	protected double weight = 0, calorie, carb, protein, fat;
 
 	// Constructor without weight
-	public Food(int id, String name, double calorie, double fat, double carb, double protein) {
+	public Food(String id, String name, double calorie, double fat, double carb, double protein) {
 		this.foodId = id;
 		this.foodName = name;
 		this.calorie = calorie;
@@ -16,7 +17,7 @@ public class Food {
 	}
 
 	// Constructor with weight
-	public Food(int id, String name, double calorie, double fat, double carb, double protein, double weight) {
+	public Food(String id, String name, double calorie, double fat, double carb, double protein, double weight) {
 		this.foodId = id;
 		this.foodName = name;
 		this.calorie = calorie;
@@ -33,11 +34,11 @@ public class Food {
 		return json;
 	}
 
-	public int getFoodId() {
+	public String getFoodId() {
 		return foodId;
 	}
 
-	public void setFoodId(int foodId) {
+	public void setFoodId(String foodId) {
 		this.foodId = foodId;
 	}
 

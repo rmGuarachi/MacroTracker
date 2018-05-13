@@ -26,6 +26,7 @@ import org.w3c.dom.Text;
 public class AddMealActivity extends AppCompatActivity {
   String scannedUPC;
   Meal meal = new Meal("Empty Meal");
+  ArrayAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +57,16 @@ public class AddMealActivity extends AppCompatActivity {
     }
     */
 
-    //Populate Meanu from a given Menu' meal - LX
+    //Populate Menu from a given Menu' meal - LX
     List<Food> tar_meal = meal.getFoods();
 
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-    ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, tar_meal);
-
+    // TODO The hashmap was for mapping the elements into the custom list_item layout, we can
+    // TODO use the ArrayAdapter but we need to see if there's a way to also map into the custom
+    // TODO layout; simple_list_item_1 is currently printing the entire food Object to string as a
+    // TODO JSON object for some reason. Need to read the docs to see if that's the adapter or the
+    // TODO the ListView layout. - DV
+    adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tar_meal);
     foodItemsList.setAdapter(adapter);
   }
 
@@ -91,10 +96,24 @@ public class AddMealActivity extends AppCompatActivity {
   }
 
   public void addFoodToMeal(View view) {
-    // TODO Dynamically add the currently scanned meal to the listview.
-    /*
-    foodsList.put(name, slashLine);
+    // TODO While the meal gets correctly added and the listview is successfully updated after pressing the button,
+    // TODO the actual meal info is shown on the front end as all zeros, but the actual Food object has the correct
+    // TODO information, as can be seen from the Log.i below. - DV
+    TextView foodName = findViewById(R.id.foodName);
+    TextView amountOfCalories = findViewById(R.id.amountOfCalories);
+    TextView amountOfFat = findViewById(R.id.amountOfFat);
+    TextView amountOfCarbs = findViewById(R.id.amountOfCarbs);
+    TextView amountOfProtein = findViewById(R.id.amountOfProtein);
+
+    String fdName = foodName.getText().toString();
+    double fdCals = Double.parseDouble(amountOfCalories.getText().toString());
+    double fdFat = Double.parseDouble(amountOfFat.getText().toString());
+    double fdCarbs = Double.parseDouble(amountOfCarbs.getText().toString());
+    double fdProtein = Double.parseDouble(amountOfProtein.getText().toString());
+
+    Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein);
+    Log.i("AddedFood", food.getNameAndWeight() + ", " + food.getSlashLine());
+    meal.addFood(food);
     adapter.notifyDataSetChanged();
-    */
   }
 }
