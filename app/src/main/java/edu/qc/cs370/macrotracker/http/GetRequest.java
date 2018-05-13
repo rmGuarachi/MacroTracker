@@ -26,25 +26,24 @@ public class GetRequest {
   private static RequestQueue requestQueue;
   // Initialize the JsonObjectRequest, this will be changed to JSONRequest later on.
   private static JsonObjectRequest jsonRequest;
-  // Initializing a variable to set the incoming TextView to, from the calling activity.
+  // Setting up the TextView array to set the text views after scanning.
   private static TextView[] views;
 
-  public static void getViaUPC(Context context, TextView[] foodInfoViews, String upc) {
+  public static void getViaUPC(Context context, TextView[] passedViews, String upc) {
     // The URL endpoint for UPC API calls
     String url = "http://ec2-18-188-255-3.us-east-2.compute.amazonaws.com:8080/MacroTrackerServletv1/foodupc?upc=" + upc;
 
     // Setting the RequestQueue variable to the context of the calling fragment.
     requestQueue = Volley.newRequestQueue(context);
     // Setting up the TextView array to set the information from this method
-    views = foodInfoViews;
-
+    views = passedViews;
     // The actual request to the API
     jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Listener<JSONObject>() {
       @Override
       public void onResponse(JSONObject response) {
         // On successful response, set the TextView to the entire output of the response (in this case, JSON).
         try {
-          // Deconstructing the json data into separate strings and then setting the textview to the newly formatted info.
+          // Deconstructing the json data into separate strings and setting them into the array that will be returned.
 
           // Parsing the name of the food item; capitalizing the first letter, lowercasing the remaining name, and removing the UPC
           String foodName = response.getString("name").toLowerCase();
@@ -52,10 +51,9 @@ public class GetRequest {
           views[0].setText(foodName);
 
           String foodCals = response.getString("Energy");
-          // foodCals = foodCals.substring(0, foodCals.indexOf("."));
           views[1].setText(foodCals);
 
-          // Very sloppy way of removing the decimal point from the fat, carbs, and protein to fix inside the text views.
+          // Very sloppy way of removing the decimal point from the fat, carbs, and protein to fit inside the text views.
           String foodFat = response.getString("Total lipid (fat)");
           foodFat = foodFat.substring(0, foodFat.indexOf("."));
           views[2].setText(foodFat);

@@ -6,7 +6,7 @@ public class Food {
 	protected double weight, calorie, carb, protein, fat;
 
 	// Constructor without weight
-	public Food(int id, String name, double calorie, double carb, double protein, double fat) {
+	public Food(int id, String name, double calorie, double fat, double carb, double protein) {
 		this.foodId = id;
 		this.foodName = name;
 		this.calorie = calorie;
@@ -16,7 +16,7 @@ public class Food {
 	}
 
 	// Constructor with weight
-	public Food(int id, String name, double calorie, double carb, double protein, double fat, double weight) {
+	public Food(int id, String name, double calorie, double fat, double carb, double protein, double weight) {
 		this.foodId = id;
 		this.foodName = name;
 		this.calorie = calorie;
@@ -87,5 +87,14 @@ public class Food {
 
 	public void setFat(double fat) {
 		this.fat = fat;
+	}
+
+	// Added the below two toString methods for adding to the listview in the AddMeal Activity - DV
+	public String getNameAndWeight() {
+		return foodName + " (" + (int) weight + " g)";
+	}
+
+	public String getSlashLine() {
+		return (int) calorie + "/" + (int) fat + "/" + (int) carb + "/" + (int) protein;
 	}
 }

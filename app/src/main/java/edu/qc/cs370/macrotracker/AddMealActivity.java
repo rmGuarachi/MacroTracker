@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.qc.cs370.macrotracker.http.GetRequest;
+import edu.qc.cs370.macrotracker.macro.Food;
+import edu.qc.cs370.macrotracker.macro.Meal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,12 +32,8 @@ public class AddMealActivity extends AppCompatActivity {
     setContentView(R.layout.activity_add_meal);
 
     HashMap<String, String> foodsList = new HashMap<>();
-    ListView foodItemsList = findViewById(R.id.foodItemsList);
     List<HashMap<String, String>> listItems = new ArrayList<>();
-
-//    foodsList.put("Grilled chicken (4 oz)", "188/7/0/26");
-//    foodsList.put("Cooked white rice (200 g)", "253/0/56/5");
-//    foodsList.put("Steamed vegetables (300 g)", "106/1/24/6");
+    ListView foodItemsList = findViewById(R.id.foodItemsList);
 
     SimpleAdapter adapter = new SimpleAdapter(
         this,
@@ -70,8 +69,9 @@ public class AddMealActivity extends AppCompatActivity {
     TextView amountOfFat = findViewById(R.id.amountOfFat);
     TextView amountOfCarbs = findViewById(R.id.amountOfCarbs);
     TextView amountOfProtein = findViewById(R.id.amountOfProtein);
-    TextView[] foodInfoTextViews = {foodName, amountOfCalories, amountOfFat, amountOfCarbs, amountOfProtein};
-    GetRequest.getViaUPC(this, foodInfoTextViews, scannedUPC);
+    TextView[] foodInformationViews = {foodName, amountOfCalories, amountOfFat, amountOfCarbs, amountOfProtein};
+
+    GetRequest.getViaUPC(this, foodInformationViews, scannedUPC);
   }
 
   public void scanBarcode(View view) {
@@ -80,7 +80,10 @@ public class AddMealActivity extends AppCompatActivity {
   }
 
   public void addFoodToMeal(View view) {
-    String message = "The added food items will appear above as a list.";
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    // TODO Dynamically add the currently scanned meal to the listview.
+    /*
+    foodsList.put(name, slashLine);
+    adapter.notifyDataSetChanged();
+    */
   }
 }
