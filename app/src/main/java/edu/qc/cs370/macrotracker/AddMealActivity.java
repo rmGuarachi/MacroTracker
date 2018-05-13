@@ -25,15 +25,19 @@ import org.w3c.dom.Text;
 
 public class AddMealActivity extends AppCompatActivity {
   String scannedUPC;
+  Meal meal = new Meal("Empty Meal");
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_meal);
 
+    ListView foodItemsList = findViewById(R.id.foodItemsList);
+
+    //Using ArrayAdapter instead of SimpleAdapter to accept ArrayList<Food> from meal. -LX
+    /*
     HashMap<String, String> foodsList = new HashMap<>();
     List<HashMap<String, String>> listItems = new ArrayList<>();
-    ListView foodItemsList = findViewById(R.id.foodItemsList);
 
     SimpleAdapter adapter = new SimpleAdapter(
         this,
@@ -50,6 +54,13 @@ public class AddMealActivity extends AppCompatActivity {
       resultsMap.put("Second Line", pair.getValue().toString());
       listItems.add(resultsMap);
     }
+    */
+
+    //Populate Meanu from a given Menu' meal - LX
+    List<Food> tar_meal = meal.getFoods();
+
+    //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
+    ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, tar_meal);
 
     foodItemsList.setAdapter(adapter);
   }

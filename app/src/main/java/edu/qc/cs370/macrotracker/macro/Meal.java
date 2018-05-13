@@ -11,17 +11,17 @@ public class Meal {
 		foods = new ArrayList<Food>();
 	}
 	*/
-	
+
 	public Meal(String mealName) {
 	  // Adding the initialization of the foods ArrayList from the above constructor. - DV
     foods = new ArrayList<>();
 		this.mealName = mealName;
 	}
-	
+
 	public void addFood(Food food) {
 		foods.add(food);
 	}
-	
+
 	public double getCalorie() {
 		double calorie = 0;
 		for(Food food: foods){
@@ -29,7 +29,7 @@ public class Meal {
 		}
 		return calorie;
 	}
-	
+
 	public double getCarb() {
 		double carb = 0;
 		for(Food food: foods) {
@@ -37,7 +37,7 @@ public class Meal {
 		}
 		return carb;
 	}
-	
+
 	public double getProtein() {
 		double protein = 0;
 		for(Food food: foods) {

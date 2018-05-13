@@ -1,31 +1,42 @@
 package edu.qc.cs370.macrotracker.macro;
 import android.annotation.TargetApi;
+
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 // Applied the below decorator to prevent a warning about DateTimeFormatter needing min sdk 26. - DV
 @TargetApi(26)
 public class Menu {
-	static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("dd/MM");
+	//static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("dd/MM");
+
+	//Using SimpleDataFormat because java.lang.NoClassDefFoundError: Failed resolution of: Ljava/time/format/DateTimeFormatter; - LX
+	static final SimpleDateFormat DTF = new SimpleDateFormat("dd/MM");
 	String menuName;
-	
+
 	ArrayList<Meal> meals;
-	LocalDate day;
+	//Change Date to String - LX
+	String day;
 
 	public Menu() {
 		this.menuName = null;
 		meals = new ArrayList<Meal>();
-		day = LocalDate.now();
+		//LocalDate.now() throws error. -LX
+		//day = LocalDate.now();
+		day = DTF.format( Calendar.getInstance().getTime() );
 	}
 
 
 	// The constructor should take in a menu name argument, in over to display breakfast, lunch, dinner, etc. - DV
 	// This constructor should only be used for implementation of saved and shared meals. -LX
 	public Menu(String menuName) {
-	  this.menuName = menuName;
+		this.menuName = menuName;
 		meals = new ArrayList<Meal>();
-		day = LocalDate.now();
+		//Same bug as default constructor - LX
+		//day = LocalDate.now();
+		day = DTF.format( Calendar.getInstance().getTime() );
 	}
 
 	public void addMeal(Meal meal) {

@@ -17,6 +17,8 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import edu.qc.cs370.macrotracker.macro.Meal;
+import edu.qc.cs370.macrotracker.macro.Menu;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +35,9 @@ public class SummaryFragment extends Fragment {
   SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMM dd, yyyy");
   String formattedDate;
 
+  //Specific profile's Menu object; this enables viewing previous day's records - LX
+  Menu menu = new Menu();
+
   public SummaryFragment() {
     // Required constructor
   }
@@ -42,6 +47,7 @@ public class SummaryFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_summary, parent, false);
 
+    /* Commenting out my previous code in order to add Louis' changes - DV
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     HashMap<String, String> mealsList = new HashMap<>();
     mealsList.put("Breakfast", "465/12/58/32");
@@ -66,6 +72,16 @@ public class SummaryFragment extends Fragment {
     }
 
     mealsOfTheDayList.setAdapter(adapter);
+    */
+
+    //Populate Meal from a given profile's menu - LX
+    List<Meal> today_Menu = menu.getMeals();
+
+    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+    //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
+    ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.list_item, today_Menu);
+
+    mealsOfTheDayList.setAdapter(adapter);
 
     return view;
   }
@@ -80,9 +96,11 @@ public class SummaryFragment extends Fragment {
 
     // Begin pie chart code
     PieChart pieChart = getView().findViewById(R.id.pieChart);
-    float currentFat = 29.0f;
-    float currentCarbs = 168.0f;
-    float currentProtein = 120.0f;
+
+    // Using methods provided by Menu, Meal classes - LX
+    float currentFat = (float) menu.getFat();
+    float currentCarbs = (float) menu.getCarb();
+    float currentProtein = (float) menu.getCalorie();
 
     List<PieEntry> entries = new ArrayList<>();
     entries.add(new PieEntry(currentFat, "Fat"));
