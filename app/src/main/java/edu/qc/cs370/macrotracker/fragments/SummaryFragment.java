@@ -58,32 +58,7 @@ public class SummaryFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_summary, parent, false);
 
-    /* Commenting out my previous code in order to add Louis' changes - DV
-    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
-    HashMap<String, String> mealsList = new HashMap<>();
-    mealsList.put("Breakfast", "465/12/58/32");
-    mealsList.put("Lunch", "410/15/35/38");
-    mealsList.put("Dinner", "535/3/75/50");
-
-    List<HashMap<String, String>> listItems = new ArrayList<>();
-    SimpleAdapter adapter = new SimpleAdapter(
-        getContext(),
-        listItems,
-        R.layout.list_item,
-        new String[] {"First Line", "Second Line"},
-        new int[] {R.id.mainItemTitle, R.id.subItemTitle});
-
-    Iterator it = mealsList.entrySet().iterator();
-    while(it.hasNext()) {
-      HashMap<String, String> resultsMap = new HashMap<>();
-      Map.Entry pair = (Map.Entry) it.next();
-      resultsMap.put("First Line", pair.getKey().toString());
-      resultsMap.put("Second Line", pair.getValue().toString());
-      listItems.add(resultsMap);
-    }
-
-    mealsOfTheDayList.setAdapter(adapter);
-    */
+    // TODO Create a CustomSummaryMealItemsAdapter java class. - DV
 
     //Populate Meal from a given profile's menu - LX
     List<Meal> today_Menu = menu.getMeals();

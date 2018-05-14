@@ -1,32 +1,23 @@
 package edu.qc.cs370.macrotracker;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+import edu.qc.cs370.macrotracker.components.CustomFoodItemAdapter;
 import edu.qc.cs370.macrotracker.http.GetRequest;
 import edu.qc.cs370.macrotracker.macro.Food;
 import edu.qc.cs370.macrotracker.macro.Meal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import org.w3c.dom.Text;
 
 public class AddMealActivity extends AppCompatActivity {
   String scannedUPC;
   Meal meal = new Meal("Empty Meal");
-  ArrayAdapter adapter;
+
+  // Implementing a custom adapter to get the simple list item 2 layout functionality back. - DV
+  CustomFoodItemAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,43 +26,8 @@ public class AddMealActivity extends AppCompatActivity {
 
     ListView foodItemsList = findViewById(R.id.foodItemsList);
 
-    //Using ArrayAdapter instead of SimpleAdapter to accept ArrayList<Food> from meal. -LX
-    /*
-    HashMap<String, String> foodsList = new HashMap<>();
-    List<HashMap<String, String>> listItems = new ArrayList<>();
-
-    SimpleAdapter adapter = new SimpleAdapter(
-        this,
-        listItems,
-        R.layout.small_list_item,
-        new String[] {"First Line", "Second Line"},
-        new int[] {R.id.mainItemTitle, R.id.subItemTitle});
-
-    Iterator it = foodsList.entrySet().iterator();
-    while(it.hasNext()) {
-      HashMap<String, String> resultsMap = new HashMap<>();
-      Map.Entry pair = (Map.Entry) it.next();
-      resultsMap.put("First Line", pair.getKey().toString());
-      resultsMap.put("Second Line", pair.getValue().toString());
-      listItems.add(resultsMap);
-    }
-    */
-
-    //Populate Menu from a given Menu' meal - LX
-    //tar_meal no longer used, Meal object's food list is directly passed to ArrayAdapter -LX
-    //List<Food> tar_meal = meal.getFoods();
-
-    //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-    // TODO The hashmap was for mapping the elements into the custom list_item layout, we can
-    // TODO use the ArrayAdapter but we need to see if there's a way to also map into the custom
-    // TODO layout; simple_list_item_1 is currently printing the entire food Object to string as a
-    // TODO JSON object for some reason. Need to read the docs to see if that's the adapter or the
-    // TODO the ListView layout. - DV
-    //
-    // Food object's have a toString() that print out the object as a JSON object.
-    // This was intended for the web app we originally spoke of. - LX
-
-    adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, meal.getFoods());
+    // Implementing a custom adapter to get the simple list item 2 layout functionality back. - DV
+    adapter = new CustomFoodItemAdapter(this, meal.getFoods());
     foodItemsList.setAdapter(adapter);
   }
 
@@ -106,10 +62,6 @@ public class AddMealActivity extends AppCompatActivity {
   }
 
   public void addFoodToMeal(View view) {
-    // TODO While the meal gets correctly added and the listview is successfully updated after pressing the button,
-    // TODO the actual meal info is shown on the front end as all zeros, but the actual Food object has the correct
-    // TODO information, as can be seen from the Log.i below. - DV
-
     //Food objects will now have a weight given by users. -LX
 
     TextView foodName = findViewById(R.id.foodName);
@@ -124,7 +76,7 @@ public class AddMealActivity extends AppCompatActivity {
     double fdFat = Double.parseDouble(amountOfFat.getText().toString());
     double fdCarbs = Double.parseDouble(amountOfCarbs.getText().toString());
     double fdProtein = Double.parseDouble(amountOfProtein.getText().toString());
-    //Enter wieght of food. -LX
+    //Enter weight of food. -LX
     double fdWeight = Double.parseDouble(weightOfFood.getText().toString());
 
     Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein, fdWeight);
