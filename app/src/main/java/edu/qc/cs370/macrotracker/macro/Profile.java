@@ -19,6 +19,8 @@ public class Profile {
 		this.protein = protein;
 		this.fat = fat;
 		menu = new ArrayList<Menu>();
+		//Create an empty Menu. Every Profile should contian at least one Menu, even if it is empty -LX
+		menu.add(new Menu());
 	}
 	
 	public static double PERCENT_TO_MASS_CP(int calorie, double percent) {
