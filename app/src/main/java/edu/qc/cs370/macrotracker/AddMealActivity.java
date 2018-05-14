@@ -109,6 +109,9 @@ public class AddMealActivity extends AppCompatActivity {
     // TODO While the meal gets correctly added and the listview is successfully updated after pressing the button,
     // TODO the actual meal info is shown on the front end as all zeros, but the actual Food object has the correct
     // TODO information, as can be seen from the Log.i below. - DV
+
+    //Food objects will now have a weight given by users. -LX
+
     TextView foodName = findViewById(R.id.foodName);
     TextView amountOfCalories = findViewById(R.id.amountOfCalories);
     TextView amountOfFat = findViewById(R.id.amountOfFat);
@@ -121,7 +124,7 @@ public class AddMealActivity extends AppCompatActivity {
     double fdFat = Double.parseDouble(amountOfFat.getText().toString());
     double fdCarbs = Double.parseDouble(amountOfCarbs.getText().toString());
     double fdProtein = Double.parseDouble(amountOfProtein.getText().toString());
-    //Enter wieght of food.
+    //Enter wieght of food. -LX
     double fdWeight = Double.parseDouble(weightOfFood.getText().toString());
 
     Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein, fdWeight);
