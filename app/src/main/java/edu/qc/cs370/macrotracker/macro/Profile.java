@@ -3,9 +3,14 @@ package edu.qc.cs370.macrotracker.macro;
 import java.util.ArrayList;
 
 public class Profile {
-	int calorie;
-	double carb, protein, fat, water;
+	int calorie; //This is kCal
+	double carb, protein, fat, water; //These values represent (g).
 	ArrayList<Menu> menu;
+
+	//Default constructor using HealthyEater.com recommended values -LX
+	public Profile() {
+		this(2200, 343, 99, 65);
+	}
 
 	//This constructor intended to accept target calorie, carb, protein, fat. - LX
 	public Profile(int calorie, double carb, double protein, double fat) {

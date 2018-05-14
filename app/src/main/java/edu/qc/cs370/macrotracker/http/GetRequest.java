@@ -21,7 +21,9 @@ import org.json.JSONObject;
        Name search - http://ec2-18-188-255-3.us-east-2.compute.amazonaws.com:8080/MacroTrackerServletv1/foods?name={ENTER NAME HERE}
  */
 
-public class GetRequest {
+public class
+
+GetRequest {
   // Initialize the requestQueue, used for actually sending out the response.
   private static RequestQueue requestQueue;
   // Initialize the JsonObjectRequest, this will be changed to JSONRequest later on.
