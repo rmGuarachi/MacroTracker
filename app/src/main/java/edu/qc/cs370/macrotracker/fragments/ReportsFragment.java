@@ -12,7 +12,11 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+
+import edu.qc.cs370.macrotracker.MainController;
 import edu.qc.cs370.macrotracker.R;
+import edu.qc.cs370.macrotracker.macro.Profile;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +51,21 @@ public class ReportsFragment extends Fragment {
     List<Entry> proteinEntries = new ArrayList<Entry>();
 
     // TODO Figure out how to set the x-axis to the days of the week -- Entry constructor can't take Date, only int
+    //---------------------------------------------------
+    //Automate line graph values by using the number of entries inside of a Menu object.
+    //The x coordinates would be the index inside a Menu object(Menu acts similar to stack)
+    //The y coordinates are the corresponding calorie, fat, carb, and protien. - LX
+    Profile profile = MainController.getProfile();
+    for(int i = 0; i < profile.getMenu().size(); i++) {
+      caloriesEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getCalorie() * 100) ) );
+      fatEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getFat() * 100) ) );
+      carbsEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getCarb() * 100) ) );
+      proteinEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getProtein() * 100) ) );
+    }
+
+
+
+    /*
     caloriesEntries.add(new Entry(1, 2000));
     caloriesEntries.add(new Entry(2, 2100));
     caloriesEntries.add(new Entry(3, 1800));
@@ -74,6 +93,7 @@ public class ReportsFragment extends Fragment {
     proteinEntries.add(new Entry(4, 227));
     proteinEntries.add(new Entry(5, 199));
     proteinEntries.add(new Entry(6, 203));
+    */
 
     LineDataSet caloriesDataSet = new LineDataSet(caloriesEntries, "");
     LineDataSet fatDataSet = new LineDataSet(fatEntries, "");

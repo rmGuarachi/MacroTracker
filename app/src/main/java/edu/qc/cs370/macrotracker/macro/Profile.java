@@ -73,6 +73,26 @@ public class Profile {
 		this.fat = fat;
 	}
 
+	public ArrayList<Menu> getMenu() {
+		return menu;
+	}
+
+	//Method to retrieve the latest Menu object. Today's Menu object - LX
+	public Menu getTodayMenu() {
+		Menu t_menu = null;
+		for(Menu i_menu: this.menu) {
+			if (i_menu.getDay() == Menu.getTodayDay())
+				t_menu = i_menu;
+		}
+		if(t_menu == null) {
+			Menu n_menu = new Menu("Today's Menu");
+			menu.add(n_menu);
+			t_menu = n_menu;
+		}
+
+		return t_menu;
+	}
+
 	//Adding this method to be able to retrieve/recreate Profile settings - LX
 	public String toJSON() {
 		String json = "{ \"calorie\": " + getCalorie() + ", " + "\"carb\":" + getCarb() + ", "

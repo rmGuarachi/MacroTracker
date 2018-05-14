@@ -54,8 +54,8 @@ public class Menu {
 	public String getDay() {
 		return DTF.format(this.day);
 	}
-	public String getDay(LocalDate day) {
-		return DTF.format(day);
+	public static String getTodayDay() {
+		return DTF.format( Calendar.getInstance().getTime() );
 	}
 
 	public double getCalorie() {

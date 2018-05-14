@@ -25,7 +25,7 @@ import org.w3c.dom.Text;
 
 public class AddMealActivity extends AppCompatActivity {
   String scannedUPC;
-  Meal meal = new Meal("Empty Meal");
+  Meal meal;
   ArrayAdapter adapter;
 
   @Override
@@ -62,14 +62,21 @@ public class AddMealActivity extends AppCompatActivity {
     //List<Food> tar_meal = meal.getFoods();
 
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-    // TODO The hashmap was for mapping the elements into the custom list_item layout, we can
-    // TODO use the ArrayAdapter but we need to see if there's a way to also map into the custom
-    // TODO layout; simple_list_item_1 is currently printing the entire food Object to string as a
-    // TODO JSON object for some reason. Need to read the docs to see if that's the adapter or the
-    // TODO the ListView layout. - DV
+    // The hashmap was for mapping the elements into the custom list_item layout, we can
+    // use the ArrayAdapter but we need to see if there's a way to also map into the custom
+    // layout; simple_list_item_1 is currently printing the entire food Object to string as a
+    // JSON object for some reason. Need to read the docs to see if that's the adapter or the
+    // the ListView layout. - DV
+    // No longer a TO-DO, see below-LX
     //
     // Food object's have a toString() that print out the object as a JSON object.
     // This was intended for the web app we originally spoke of. - LX
+
+
+    // Every time this view is used, it will be for the intention of logging a new meal.
+    meal = new Meal("GET NAME FROM TEXTVIEW");
+    MainController.getProfile().getTodayMenu().addMeal(meal);
+
 
     adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, meal.getFoods());
     foodItemsList.setAdapter(adapter);
@@ -94,6 +101,7 @@ public class AddMealActivity extends AppCompatActivity {
 
     //Set default weight of food to 100g initially. -LX
     //This default weight should/could later be changed to the USDA recommended serving size - LX
+    // TODO find the USDA recommended serving size and plug into line 106.
     TextView weightOfFood = findViewById(R.id.weight);
     weightOfFood.setText("100");
 
