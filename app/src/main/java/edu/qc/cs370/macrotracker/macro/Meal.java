@@ -69,7 +69,8 @@ public class Meal {
     this.mealName = mealName;
   }
 
+  //toString modified to display meal Name - LX
   public String toString() {
-	    return getCalorie() + "/" + getCarb() + "/" + getProtein() + "/" + getFat();
+	    return mealName + ": " + getCalorie() + "/" + getCarb() + "/" + getProtein() + "/" + getFat();
   }
 }
