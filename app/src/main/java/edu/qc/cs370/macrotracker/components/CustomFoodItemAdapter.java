@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
+import edu.qc.cs370.macrotracker.R;
 import edu.qc.cs370.macrotracker.macro.Food;
 import java.util.ArrayList;
 
@@ -36,17 +37,21 @@ public class CustomFoodItemAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    // Using a deprecated java class, but for the time being, it works. - DV
-    TwoLineListItem twoLineListItem;
+    View twoLineListItem;
     if (convertView == null) {
       LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      twoLineListItem = (TwoLineListItem) inflater.inflate(android.R.layout.simple_list_item_2, null);
+      twoLineListItem = inflater.inflate(R.layout.small_list_item, null);
     } else {
-      twoLineListItem = (TwoLineListItem) convertView;
+      twoLineListItem = convertView;
     }
 
+    /*
     TextView mainText = twoLineListItem.getText1();
     TextView subText = twoLineListItem.getText2();
+    */
+
+    TextView mainText = twoLineListItem.findViewById(R.id.mainItemTitle);
+    TextView subText= twoLineListItem.findViewById(R.id.subItemTitle);
 
     mainText.setText(foodItems.get(position).getNameAndWeight());
     subText.setText(foodItems.get(position).getSlashLine());

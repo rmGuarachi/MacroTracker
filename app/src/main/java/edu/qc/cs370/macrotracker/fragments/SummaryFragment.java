@@ -66,10 +66,12 @@ public class SummaryFragment extends Fragment {
 
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
+
+    /* Commenting out this code for now, app crashes if left in. - DV
     ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MainController.getProfile().getTodayMenu().getMeals());
 
     mealsOfTheDayList.setAdapter(adapter);
-
+    */
     return view;
   }
 
@@ -146,7 +148,7 @@ public class SummaryFragment extends Fragment {
     }
     List<User> users = MainActivity.foodDatabase.userDao().getUsers();
     nameView = getView().findViewById(R.id.name);
-    int num = users.size()-1;
+    int num = users.size() - 1;
     nameView.setText(users.get(num).getName());
   }
 }
