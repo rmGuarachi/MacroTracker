@@ -1,22 +1,32 @@
 package edu.qc.cs370.macrotracker.fragments;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+
+import edu.qc.cs370.macrotracker.MainActivity;
+import edu.qc.cs370.macrotracker.db.Food;
+import edu.qc.cs370.macrotracker.db.User;
 import edu.qc.cs370.macrotracker.macro.Meal;
 import edu.qc.cs370.macrotracker.macro.Menu;
 import java.text.SimpleDateFormat;
@@ -34,6 +44,7 @@ public class SummaryFragment extends Fragment {
   Date currentDate = Calendar.getInstance().getTime();
   SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE MMMM dd, yyyy");
   String formattedDate;
+  TextView nameView;
 
   //Specific profile's Menu object; this enables viewing previous day's records - LX
   Menu menu = new Menu();
@@ -146,5 +157,17 @@ public class SummaryFragment extends Fragment {
     legend.setEnabled(false);
 
     pieChart.invalidate();
+
+    try{
+      User user = new User();
+      user.setName("ny mets is saved in sqlite1");
+      MainActivity.foodDatabase.userDao().addUser(user);
+    } catch (SQLiteConstraintException E){
+
+    }
+    List<User> users = MainActivity.foodDatabase.userDao().getUsers();
+    nameView = getView().findViewById(R.id.name);
+    int num = users.size()-1;
+    nameView.setText(users.get(num).getName());
   }
 }

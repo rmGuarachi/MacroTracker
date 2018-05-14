@@ -33,10 +33,13 @@ public class SettingsFragment extends Fragment {
     ListView settingsList = view.findViewById(R.id.settingsList);
 
     HashMap<String, String> settingOptionsWithEnteredInfo = new HashMap<>();
-    settingOptionsWithEnteredInfo.put("Calories", "2400");
-    settingOptionsWithEnteredInfo.put("Fat", "60");
-    settingOptionsWithEnteredInfo.put("Carbs", "305");
-    settingOptionsWithEnteredInfo.put("Protein", "160");
+    settingOptionsWithEnteredInfo.put("Name", "");
+    settingOptionsWithEnteredInfo.put("DOB", "");
+    settingOptionsWithEnteredInfo.put("Weight", "");
+    settingOptionsWithEnteredInfo.put("Calories", "");
+    settingOptionsWithEnteredInfo.put("Fat", "");
+    settingOptionsWithEnteredInfo.put("Carbs", "");
+    settingOptionsWithEnteredInfo.put("Protein", "");
 
     List<HashMap<String, String>> listItems = new ArrayList<>();
     SimpleAdapter adapter = new SimpleAdapter(

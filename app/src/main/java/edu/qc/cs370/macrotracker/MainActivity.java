@@ -1,5 +1,6 @@
 package edu.qc.cs370.macrotracker;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,12 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import edu.qc.cs370.macrotracker.db.Food;
+import edu.qc.cs370.macrotracker.db.FoodDatabase;
 import edu.qc.cs370.macrotracker.fragments.ReportsFragment;
 import edu.qc.cs370.macrotracker.fragments.SettingsFragment;
 import edu.qc.cs370.macrotracker.fragments.SummaryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+  public static FoodDatabase foodDatabase;
   FragmentManager fragmentManager = getSupportFragmentManager();
   private TextView textMessage;
 
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    //database connection will init and will allow dbconn to run on mainThread - RG
+    foodDatabase = Room.databaseBuilder(getApplicationContext(), FoodDatabase.class, "macroTrackerdb").allowMainThreadQueries().build();
 
     // Serve up the summary fragment automatically
     switchToSummaryFragment(fragmentManager);
