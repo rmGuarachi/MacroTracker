@@ -50,6 +50,7 @@ public class AddMealActivity extends AppCompatActivity {
 
     //Set default weight of food to 100g initially. -LX
     //This default weight should/could later be changed to the USDA recommended serving size - LX
+    // TODO find the USDA recommended serving size and plug into line 106.
     TextView weightOfFood = findViewById(R.id.weight);
     weightOfFood.setText("100");
 

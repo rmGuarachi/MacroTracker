@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import edu.qc.cs370.macrotracker.MainActivity;
+import edu.qc.cs370.macrotracker.MainController;
 import edu.qc.cs370.macrotracker.db.Food;
 import edu.qc.cs370.macrotracker.db.User;
 import edu.qc.cs370.macrotracker.macro.Meal;
@@ -47,7 +48,7 @@ public class SummaryFragment extends Fragment {
   TextView nameView;
 
   //Specific profile's Menu object; this enables viewing previous day's records - LX
-  Menu menu = new Menu();
+  //Menu menu = new Menu(); //Variable no longer needed. Will use MainController - LX
 
   public SummaryFragment() {
     // Required constructor
@@ -61,11 +62,11 @@ public class SummaryFragment extends Fragment {
     // TODO Create a CustomSummaryMealItemsAdapter java class. - DV
 
     //Populate Meal from a given profile's menu - LX
-    List<Meal> today_Menu = menu.getMeals();
+    //List<Meal> today_Menu = menu.getMeals(); //Variable no longer needed. Will use MainController - LX
 
     ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, today_Menu);
+    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MainController.getProfile().getTodayMenu().getMeals());
 
     mealsOfTheDayList.setAdapter(adapter);
 
@@ -82,11 +83,14 @@ public class SummaryFragment extends Fragment {
 
     // Begin pie chart code
     PieChart pieChart = getView().findViewById(R.id.pieChart);
+
+    /*************************************************************************/
     /* We will use the below code, but leaving up dummy data for now. - DV
     // Using methods provided by Menu, Meal classes - LX
-    float currentFat = (float) menu.getFat();
-    float currentCarbs = (float) menu.getCarb();
-    float currentProtein = (float) menu.getCalorie();
+    Menu today_menu = MainController.getProfile().getTodayMenu();
+    float currentFat = (float) today_menu.getFat();
+    float currentCarbs = (float) today_menu.getCarb();
+    float currentProtein = (float) today_menu.getProtein();
     */
 
     float currentFat = 45.0f;
