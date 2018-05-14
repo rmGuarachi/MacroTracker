@@ -13,7 +13,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
-      android:id="@+id/responseScrollView"
+      android:id="@+id/reportsScrollView"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:layout_marginTop="8dp"
@@ -24,12 +24,97 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
-      <TextView
-        android:id="@+id/testText"
+
+
+      <android.support.constraint.ConstraintLayout
+        android:id="@+id/reportsLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        />
+        android:layout_height="match_parent"
+        android:minHeight="1100dp">
+
+        <TextView
+          android:id="@+id/caloriesReportTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Calories Report"
+          app:layout_constraintBottom_toTopOf="@+id/calorieReportChart"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+          android:id="@+id/calorieReportChart"
+          android:layout_width="match_parent"
+          android:layout_height="250dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          app:layout_constraintBottom_toTopOf="@+id/fatReportTitle"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/caloriesReportTitle"></com.github.mikephil.charting.charts.LineChart>
+        <TextView
+          android:id="@+id/fatReportTitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          android:text="Fat Report"
+          app:layout_constraintBottom_toTopOf="@+id/fatReportChart"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/calorieReportChart"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+          android:id="@+id/fatReportChart"
+          android:layout_width="match_parent"
+          android:layout_height="250dp"
+          android:layout_marginTop="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/fatReportTitle"></com.github.mikephil.charting.charts.LineChart>
+        <TextView
+          android:id="@+id/carbsReportTitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          android:text="Carbs Report"
+          app:layout_constraintBottom_toTopOf="@+id/carbsReportChart"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/fatReportChart"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+          android:id="@+id/carbsReportChart"
+          android:layout_width="match_parent"
+          android:layout_height="250dp"
+          android:layout_marginTop="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/carbsReportTitle"></com.github.mikephil.charting.charts.LineChart>
+        <TextView
+          android:id="@+id/proteinReportTitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          android:text="Protein Report"
+          app:layout_constraintBottom_toTopOf="@+id/proteinReportChart"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/carbsReportChart"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+          android:id="@+id/proteinReportChart"
+          android:layout_width="match_parent"
+          android:layout_height="250dp"
+          android:layout_marginTop="8dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/proteinReportTitle"></com.github.mikephil.charting.charts.LineChart>
+
+      </android.support.constraint.ConstraintLayout>
     </ScrollView>
   </android.support.constraint.ConstraintLayout>
 </FrameLayout>

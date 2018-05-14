@@ -218,15 +218,14 @@
       <Button
         android:id="@+id/addFoodToMealBtn"
         android:layout_width="0dp"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="addFoodToMeal"
         android:text="Add Food Item to Meal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/saveMealBtn"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/foodItemsList"/>
       <ListView
         android:id="@+id/foodItemsList"
         android:layout_width="0dp"
@@ -235,6 +234,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+      <Button
+        android:id="@+id/saveMealBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Save Meal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addFoodToMealBtn"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemsList"/>
     </android.support.constraint.ConstraintLayout>
   </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class SummaryFragment extends Fragment {
   Date currentDate = Calendar.getInstance().getTime();
-  SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMM dd, yyyy");
+  SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE MMMM dd, yyyy");
   String formattedDate;
 
   //Specific profile's Menu object; this enables viewing previous day's records - LX
@@ -132,6 +132,7 @@ public class SummaryFragment extends Fragment {
     pieChart.setUsePercentValues(true);
     pieChart.setTransparentCircleRadius(0.0f);
     pieChart.setUsePercentValues(false);
+    pieChart.setTouchEnabled(false);
 
     //TODO create an onclick listener to switch the view between percent and actual value
 

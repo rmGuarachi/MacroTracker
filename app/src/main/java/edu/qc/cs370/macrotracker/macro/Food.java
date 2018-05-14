@@ -28,10 +28,14 @@ public class Food {
 	}
 
 	public String toString() {
+		/* Commenting out since we don't need json at the moment. -DV
 		String json = "{ \"id\":" + foodId + ", \"name\":\"" + foodName + "\", " + "\"weight\": " + weight + ", "
 				+ "\"calories\": " + getCalorie() + ", " + "\"carb\":" + getCarb() + ", "
 				+ "\"protein\":" + getProtein() + ", " + "\"fat\":" + getFat() + " }";
 		return json;
+		*/
+
+		return getNameAndWeight() + ", " + getSlashLine();
 	}
 
 	public String getFoodId() {
@@ -59,7 +63,7 @@ public class Food {
 	}
 
 	public double getCalorie() {
-		return calorie * weight;
+		return calorie;
 	}
 
 	public void setCalorie(double calorie) {
@@ -67,7 +71,7 @@ public class Food {
 	}
 
 	public double getCarb() {
-		return carb * weight;
+		return carb;
 	}
 
 	public void setCarb(double carb) {
@@ -75,7 +79,7 @@ public class Food {
 	}
 
 	public double getProtein() {
-		return protein * weight;
+		return protein;
 	}
 
 	public void setProtein(double protein) {
@@ -83,7 +87,7 @@ public class Food {
 	}
 
 	public double getFat() {
-		return fat * weight;
+		return fat;
 	}
 
 	public void setFat(double fat) {
@@ -96,6 +100,6 @@ public class Food {
 	}
 
 	public String getSlashLine() {
-		return (int) calorie + "/" + (int) fat + "/" + (int) carb + "/" + (int) protein;
+		return (int) (calorie * (weight / 100))+ "/" + (int) (fat * (weight / 100)) + "/" + (int) (carb * (weight / 100)) + "/" + (int) (protein * (weight / 100));
 	}
 }
