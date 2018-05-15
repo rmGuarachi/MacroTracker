@@ -62,6 +62,7 @@ public class SettingsFragment extends Fragment {
         alert.setTitle("Settings");
         alert.setMessage("Update " + info_type);
         alert.setView(edittext);
+        edittext.setText( parent.getItemAtPosition(position).toString().split(":")[1]);
         alert.setPositiveButton("Update", new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int whichButton) {
             //What ever you want to do with the value
@@ -97,7 +98,7 @@ public class SettingsFragment extends Fragment {
       MainActivity.foodDatabase.userDao().updateUser(MainActivity.user);
     }
     else if (info_type.equals("DOB")){
-      MainActivity.user.setName(info);
+      MainActivity.user.setDob(info);
       MainActivity.foodDatabase.userDao().updateUser(MainActivity.user);
     }
     else if (info_type.equals("Weight")){
