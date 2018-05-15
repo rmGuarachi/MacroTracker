@@ -1,6 +1,8 @@
 package edu.qc.cs370.macrotracker;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import edu.qc.cs370.macrotracker.db.Food;
 import edu.qc.cs370.macrotracker.db.FoodDatabase;
+import edu.qc.cs370.macrotracker.db.User;
 import edu.qc.cs370.macrotracker.fragments.ReportsFragment;
 import edu.qc.cs370.macrotracker.fragments.SettingsFragment;
 import edu.qc.cs370.macrotracker.fragments.SummaryFragment;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
   public static FoodDatabase foodDatabase;
   FragmentManager fragmentManager = getSupportFragmentManager();
   private TextView textMessage;
+  public static User user;
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     //database connection will init and will allow dbconn to run on mainThread - RG
-    foodDatabase = Room.databaseBuilder(getApplicationContext(), FoodDatabase.class, "macroTrackerdb").allowMainThreadQueries().build();
+    foodDatabase = Room.databaseBuilder(getApplicationContext(), FoodDatabase.class, "macroTrackerdb1").allowMainThreadQueries().build();
 
     // Serve up the summary fragment automatically
     switchToSummaryFragment(fragmentManager);
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     textMessage = findViewById(R.id.message);
     BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    setUserInit();
   }
 
   // Boilerplate methods to switch between fragments
@@ -80,5 +85,17 @@ public class MainActivity extends AppCompatActivity {
   public void addMeal(View view) {
     Intent intent = new Intent(this, AddMealActivity.class);
     startActivity(intent);
+  }
+
+  public void setUserInit(){
+    int users = foodDatabase.userDao().getUsers().size();
+    user = new User();
+    if (users == 0){
+      user.setName("User");
+      foodDatabase.userDao().addUser(user);
+    }
+    else {
+      user = foodDatabase.userDao().getUsers().get(0);
+    }
   }
 }

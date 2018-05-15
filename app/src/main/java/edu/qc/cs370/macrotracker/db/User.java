@@ -7,8 +7,10 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "user")
 public class User {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    private int id;
+
     private String name;
 
     private String dob;
@@ -22,6 +24,15 @@ public class User {
     private int carbs;
 
     private int fat;
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -64,6 +75,9 @@ public class User {
     }
 
     public String getDob() {
+        if (dob == null){
+            return "Not Available";
+        }
         return dob;
     }
 
