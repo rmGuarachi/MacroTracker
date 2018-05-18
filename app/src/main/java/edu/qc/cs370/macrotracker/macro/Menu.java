@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 // Applied the below decorator to prevent a warning about DateTimeFormatter needing min sdk 26. - DV
 @TargetApi(26)
@@ -21,8 +22,9 @@ public class Menu {
 	String day;
 
 	public Menu() {
-		this.menuName = null;
+		this.menuName = "";
 		meals = new ArrayList<Meal>();
+		meals.add(new Meal());
 		//LocalDate.now() throws error. -LX
 		//day = LocalDate.now();
 		day = DTF.format( Calendar.getInstance().getTime() );
@@ -31,12 +33,25 @@ public class Menu {
 
 	// The constructor should take in a menu name argument, in over to display breakfast, lunch, dinner, etc. - DV
 	// This constructor should only be used for implementation of saved and shared meals. -LX depre.
+
+	//****************************
+	/* -LX
+		MENU CONSTRUCTOR
+		This constructor is intended for use when we share Today's Menu.
+		eg. menuName : Louis' Fasting
+		    menuName : Carboloading
+		    menuName : Paleo Diet
+	*/
+	//****************************
 	public Menu(String menuName) {
+		this();
 		this.menuName = menuName;
+		/*
 		meals = new ArrayList<Meal>();
 		//Same bug as default constructor - LX
 		//day = LocalDate.now();
 		day = DTF.format( Calendar.getInstance().getTime() );
+		*/
 	}
 
 	public void addMeal(Meal meal) {
@@ -52,10 +67,10 @@ public class Menu {
 	}
 
 	public String getDay() {
-		return DTF.format(this.day);
+		return day;
 	}
 	public static String getTodayDay() {
-		return DTF.format( Calendar.getInstance().getTime() );
+		return DTF.format( (Date)Calendar.getInstance().getTime() );
 	}
 
 	public double getCalorie() {

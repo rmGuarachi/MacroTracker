@@ -6,15 +6,18 @@ public class Meal {
 	String mealName;
 
 	// The constructor should require a meal name, commenting out the below for now. - DV
-  /*
+
+	// Meal name now defaults to BLANK SPACE instead of null. avoids nullpointerexception - LX
 	public Meal() {
+		mealName = "";
 		foods = new ArrayList<Food>();
+		//foods.add(new Food());
 	}
-	*/
+
 
 	public Meal(String mealName) {
 	  // Adding the initialization of the foods ArrayList from the above constructor. - DV
-    	foods = new ArrayList<>();
+    	this();
 		this.mealName = mealName;
 	}
 

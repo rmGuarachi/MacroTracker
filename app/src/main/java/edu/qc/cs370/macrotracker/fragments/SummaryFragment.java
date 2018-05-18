@@ -68,10 +68,11 @@ public class SummaryFragment extends Fragment {
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
 
     /* Commenting out this code for now, app crashes if left in. - DV
+     */
     ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MainController.getProfile().getTodayMenu().getMeals());
 
     mealsOfTheDayList.setAdapter(adapter);
-    */
+    /**/
     return view;
   }
 
@@ -89,15 +90,19 @@ public class SummaryFragment extends Fragment {
     /*************************************************************************/
     /* We will use the below code, but leaving up dummy data for now. - DV
     // Using methods provided by Menu, Meal classes - LX
+    */
+
     Menu today_menu = MainController.getProfile().getTodayMenu();
     float currentFat = (float) today_menu.getFat();
     float currentCarbs = (float) today_menu.getCarb();
     float currentProtein = (float) today_menu.getProtein();
-    */
 
+  /*
     float currentFat = 45.0f;
     float currentCarbs = 195.0f;
     float currentProtein = 115.0f;
+
+    */
 
     List<PieEntry> entries = new ArrayList<>();
     entries.add(new PieEntry(currentFat, "Fat"));

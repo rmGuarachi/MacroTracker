@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     //database connection will init and will allow dbconn to run on mainThread - RG
     foodDatabase = Room.databaseBuilder(getApplicationContext(), FoodDatabase.class, "macroTrackerdb1").allowMainThreadQueries().build();
 
+    //Call to main controller to get the value we need for contorller
+    new MainController(foodDatabase);
+
     // Serve up the summary fragment automatically
     switchToSummaryFragment(fragmentManager);
 

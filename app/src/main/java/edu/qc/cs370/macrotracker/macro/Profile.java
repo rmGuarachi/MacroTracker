@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class Profile {
 	int calorie; //This is kCal
 	double carb, protein, fat, water; //These values represent (g).
+	//Menu today_menu;
 	ArrayList<Menu> menu;
 
 	//Default constructor using HealthyEater.com recommended values -LX
+
 	public Profile() {
 		this(2200, 343, 99, 65);
 	}
@@ -18,9 +20,14 @@ public class Profile {
 		this.carb = carb;
 		this.protein = protein;
 		this.fat = fat;
+
+		//today_menu = new Menu();
+
+
 		menu = new ArrayList<Menu>();
 		//Create an empty Menu. Every Profile should contian at least one Menu, even if it is empty -LX
 		menu.add(new Menu());
+
 	}
 	
 	public static double PERCENT_TO_MASS_CP(int calorie, double percent) {
@@ -81,18 +88,19 @@ public class Profile {
 
 	//Method to retrieve the latest Menu object. Today's Menu object - LX
 	public Menu getTodayMenu() {
-		Menu t_menu = null;
+
+		Menu today_menu = null;
 		for(Menu i_menu: this.menu) {
 			if (i_menu.getDay() == Menu.getTodayDay())
-				t_menu = i_menu;
+				today_menu = i_menu;
 		}
-		if(t_menu == null) {
+		if(today_menu == null) {
 			Menu n_menu = new Menu("Today's Menu");
 			menu.add(n_menu);
-			t_menu = n_menu;
+			today_menu = n_menu;
 		}
 
-		return t_menu;
+		return today_menu;
 	}
 
 	//Adding this method to be able to retrieve/recreate Profile settings - LX
