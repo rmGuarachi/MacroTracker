@@ -45,3 +45,8 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 }
+
+// GSON Libary, added by LX
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.4'
+}
