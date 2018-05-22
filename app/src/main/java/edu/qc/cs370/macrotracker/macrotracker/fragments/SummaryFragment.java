@@ -42,118 +42,120 @@ import java.util.List;
 import java.util.Map;
 
 public class SummaryFragment extends Fragment {
-  Date currentDate = Calendar.getInstance().getTime();
-  SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE MMMM dd, yyyy");
-  String formattedDate;
-  TextView nameView;
+    // commented this out because it was breaking code - this happen after pulling code from git
 
-  //Specific profile's Menu object; this enables viewing previous day's records - LX
-  //Menu menu = new Menu(); //Variable no longer needed. Will use MainController - LX
-
-  public SummaryFragment() {
-    // Required constructor
-  }
-
-  @Nullable
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_summary, parent, false);
-
-    // TODO Create a CustomSummaryMealItemsAdapter java class. - DV
-
-    //Populate Meal from a given profile's menu - LX
-    //List<Meal> today_Menu = menu.getMeals(); //Variable no longer needed. Will use MainController - LX
-
-    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
-    //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
-
-    /* Commenting out this code for now, app crashes if left in. - DV
-     */
-    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, edu.qc.cs370.macrotracker.macrotracker.MainController.getProfile().getTodayMenu().getMeals());
-
-    mealsOfTheDayList.setAdapter(adapter);
-    /**/
-    return view;
-  }
-
-  @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
-    // Setting up the current date
-    formattedDate = dateFormatter.format(currentDate);
-
-    TextView currentDate = getView().findViewById(R.id.currentDate);
-    currentDate.setText(formattedDate);
-
-    // Begin pie chart code
-    PieChart pieChart = getView().findViewById(R.id.pieChart);
-
-    /*************************************************************************/
-    /* We will use the below code, but leaving up dummy data for now. - DV
-    // Using methods provided by Menu, Meal classes - LX
-    */
-
-    edu.qc.cs370.macrotracker.macrotracker.macro.Menu today_menu = edu.qc.cs370.macrotracker.macrotracker.MainController.getProfile().getTodayMenu();
-    float currentFat = (float) today_menu.getFat();
-    float currentCarbs = (float) today_menu.getCarb();
-    float currentProtein = (float) today_menu.getProtein();
-
-  /*
-    float currentFat = 45.0f;
-    float currentCarbs = 195.0f;
-    float currentProtein = 115.0f;
-
-    */
-
-    List<PieEntry> entries = new ArrayList<>();
-    entries.add(new PieEntry(currentFat, "Fat"));
-    entries.add(new PieEntry(currentCarbs, "Carbs"));
-    entries.add(new PieEntry(currentProtein, "Protein"));
-
-    PieDataSet dataSet = new PieDataSet(entries, "");
-
-    // Setting up the pie chart colors
-    ContextCompat.getColor(getContext(), R.color.colorFat);
-    ContextCompat.getColor(getContext(), R.color.colorCarbs);
-    ContextCompat.getColor(getContext(), R.color.colorProtein);
-    dataSet.setColors(new int[] {R.color.colorFat, R.color.colorCarbs, R.color.colorProtein}, getContext());
-
-    PieData pieData = new PieData(dataSet);
-    pieData.setValueTextSize(24.0f);
-    ContextCompat.getColor(getContext(), R.color.colorBlack);
-    pieData.setValueTextColor(R.color.colorBlack);
-
-    // Setting data and styling the piechart
-    pieChart.setData(pieData);
-    pieChart.setEntryLabelColor(R.color.colorBlack);
-    pieChart.setHoleRadius(0.0f);
-    pieChart.setUsePercentValues(true);
-    pieChart.setTransparentCircleRadius(0.0f);
-    pieChart.setUsePercentValues(false);
-    pieChart.setTouchEnabled(false);
-
-    //TODO create an onclick listener to switch the view between percent and actual value
-
-    // Workaround to remove the description label on the bottom right corner
-    Description description = new Description();
-    description.setText("");
-    pieChart.setDescription(description);
-
-    // Removing the chart legend
-    Legend legend = pieChart.getLegend();
-    legend.setEnabled(false);
-
-    pieChart.invalidate();
-
-    try{
-      edu.qc.cs370.macrotracker.macrotracker.db.User user = new edu.qc.cs370.macrotracker.macrotracker.db.User();
-      user.setName("ny mets is saved in sqlite1");
-      edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().addUser(user);
-    } catch (SQLiteConstraintException E){
-
-    }
-    List<edu.qc.cs370.macrotracker.macrotracker.db.User> users = edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().getUsers();
-    nameView = getView().findViewById(R.id.name);
-    int num = users.size() - 1;
-    nameView.setText(users.get(num).getName());
-  }
+//  Date currentDate = Calendar.getInstance().getTime();
+//  SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE MMMM dd, yyyy");
+//  String formattedDate;
+//  TextView nameView;
+//
+//  //Specific profile's Menu object; this enables viewing previous day's records - LX
+//  //Menu menu = new Menu(); //Variable no longer needed. Will use MainController - LX
+//
+//  public SummaryFragment() {
+//    // Required constructor
+//  }
+//
+//  @Nullable
+//  @Override
+//  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+//    View view = inflater.inflate(R.layout.fragment_summary, parent, false);
+//
+//    // TODO Create a CustomSummaryMealItemsAdapter java class. - DV
+//
+//    //Populate Meal from a given profile's menu - LX
+//    //List<Meal> today_Menu = menu.getMeals(); //Variable no longer needed. Will use MainController - LX
+//
+//    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+//    //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
+//
+//    /* Commenting out this code for now, app crashes if left in. - DV
+//     */
+//    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, edu.qc.cs370.macrotracker.macrotracker.MainController.getProfile().getTodayMenu().getMeals());
+//
+//    mealsOfTheDayList.setAdapter(adapter);
+//    /**/
+//    return view;
+//  }
+//
+//  @Override
+//  public void onViewCreated(View view, Bundle savedInstanceState) {
+//    // Setting up the current date
+//    formattedDate = dateFormatter.format(currentDate);
+//
+//    TextView currentDate = getView().findViewById(R.id.currentDate);
+//    currentDate.setText(formattedDate);
+//
+//    // Begin pie chart code
+//    PieChart pieChart = getView().findViewById(R.id.pieChart);
+//
+//    /*************************************************************************/
+//    /* We will use the below code, but leaving up dummy data for now. - DV
+//    // Using methods provided by Menu, Meal classes - LX
+//    */
+//
+//    edu.qc.cs370.macrotracker.macrotracker.macro.Menu today_menu = edu.qc.cs370.macrotracker.macrotracker.MainController.getProfile().getTodayMenu();
+//    float currentFat = (float) today_menu.getFat();
+//    float currentCarbs = (float) today_menu.getCarb();
+//    float currentProtein = (float) today_menu.getProtein();
+//
+//  /*
+//    float currentFat = 45.0f;
+//    float currentCarbs = 195.0f;
+//    float currentProtein = 115.0f;
+//
+//    */
+//
+//    List<PieEntry> entries = new ArrayList<>();
+//    entries.add(new PieEntry(currentFat, "Fat"));
+//    entries.add(new PieEntry(currentCarbs, "Carbs"));
+//    entries.add(new PieEntry(currentProtein, "Protein"));
+//
+//    PieDataSet dataSet = new PieDataSet(entries, "");
+//
+//    // Setting up the pie chart colors
+//    ContextCompat.getColor(getContext(), R.color.colorFat);
+//    ContextCompat.getColor(getContext(), R.color.colorCarbs);
+//    ContextCompat.getColor(getContext(), R.color.colorProtein);
+//    dataSet.setColors(new int[] {R.color.colorFat, R.color.colorCarbs, R.color.colorProtein}, getContext());
+//
+//    PieData pieData = new PieData(dataSet);
+//    pieData.setValueTextSize(24.0f);
+//    ContextCompat.getColor(getContext(), R.color.colorBlack);
+//    pieData.setValueTextColor(R.color.colorBlack);
+//
+//    // Setting data and styling the piechart
+//    pieChart.setData(pieData);
+//    pieChart.setEntryLabelColor(R.color.colorBlack);
+//    pieChart.setHoleRadius(0.0f);
+//    pieChart.setUsePercentValues(true);
+//    pieChart.setTransparentCircleRadius(0.0f);
+//    pieChart.setUsePercentValues(false);
+//    pieChart.setTouchEnabled(false);
+//
+//    //TODO create an onclick listener to switch the view between percent and actual value
+//
+//    // Workaround to remove the description label on the bottom right corner
+//    Description description = new Description();
+//    description.setText("");
+//    pieChart.setDescription(description);
+//
+//    // Removing the chart legend
+//    Legend legend = pieChart.getLegend();
+//    legend.setEnabled(false);
+//
+//    pieChart.invalidate();
+//
+//    try{
+//      edu.qc.cs370.macrotracker.macrotracker.db.User user = new edu.qc.cs370.macrotracker.macrotracker.db.User();
+//      user.setName("ny mets is saved in sqlite1");
+//      edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().addUser(user);
+//    } catch (SQLiteConstraintException E){
+//
+//    }
+//    List<edu.qc.cs370.macrotracker.macrotracker.db.User> users = edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().getUsers();
+//    nameView = getView().findViewById(R.id.name);
+//    int num = users.size() - 1;
+//    nameView.setText(users.get(num).getName());
+//  }
 }

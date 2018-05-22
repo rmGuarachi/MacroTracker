@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import edu.qc.cs370.macrotracker.MainActivity;
 import edu.qc.cs370.macrotracker.MainController;
 import edu.qc.cs370.macrotracker.R;
 import edu.qc.cs370.macrotracker.macro.Profile;
@@ -56,11 +57,11 @@ public class ReportsFragment extends Fragment {
     //The x coordinates would be the index inside a Menu object(Menu acts similar to stack)
     //The y coordinates are the corresponding calorie, fat, carb, and protien. - LX
     Profile profile = MainController.getProfile();
-    for(int i = 0; i < profile.getMenu().size(); i++) {
-      caloriesEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getCalorie() * 100) ) );
-      fatEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getFat() * 100) ) );
-      carbsEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getCarb() * 100) ) );
-      proteinEntries.add( new Entry(i + 1, (int)(profile.getMenu().get(i).getProtein() * 100) ) );
+    for(int i = 0; i < MainActivity.foodItems.size(); i++) {
+      caloriesEntries.add( new Entry(i + 1, (int) MainActivity.foodItems.get(i).getCalorie()));
+      fatEntries.add( new Entry(i + 1,  (int) MainActivity.foodItems.get(i).getFat()) );
+      carbsEntries.add( new Entry(i + 1, (int) MainActivity.foodItems.get(i).getCarb()));
+      proteinEntries.add( new Entry(i + 1, (int) MainActivity.foodItems.get(i).getProtein()) );
     }
 
 
