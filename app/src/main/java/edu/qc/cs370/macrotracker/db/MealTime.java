@@ -1,5 +1,7 @@
 package edu.qc.cs370.macrotracker.db;
 
+
+// ENUM created by RG
 public enum MealTime {
     BREAKFAST(1), LUNCH(2), DINNER(3), SNACK(4);
 

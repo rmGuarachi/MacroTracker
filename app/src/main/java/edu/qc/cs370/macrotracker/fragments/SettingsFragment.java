@@ -39,6 +39,7 @@ public class SettingsFragment extends Fragment {
     // TODO Create a CustomSettingsAdapter java class. - DV
     // Implementing an arrayadapter for settings list view. - DV
     final ArrayList<String> settings = new ArrayList<>();
+    // CONNECTING Db to fragment written by RG
     settings.add("Name: " + MainActivity.user.getName());
     settings.add("DOB: " + MainActivity.user.getDob());
     settings.add("Weight: " + MainActivity.user.getWeight());
@@ -54,7 +55,7 @@ public class SettingsFragment extends Fragment {
     settingsList.setOnItemClickListener(new OnItemClickListener() {
       @Override
       public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
-        // TODO add the on click events for each list item here. - DV
+        // OnClick Listeners was written by RG
         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
         final EditText edittext = new EditText(getContext());
         final int setting_position = position;
@@ -93,6 +94,7 @@ public class SettingsFragment extends Fragment {
   }
 
   public void updateInfo(String info_type, String info){
+    // method written by RG
     if (info_type.equals("Name")){
       MainActivity.user.setName(info);
       MainActivity.foodDatabase.userDao().updateUser(MainActivity.user);
@@ -142,6 +144,7 @@ public class SettingsFragment extends Fragment {
   }
 
   public int parseToInt(String val){
+    // method written by RG
     int value = 0;
     try {
       value = Integer.parseInt(val);

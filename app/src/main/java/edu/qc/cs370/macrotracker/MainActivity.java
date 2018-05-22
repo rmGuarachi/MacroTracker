@@ -22,10 +22,10 @@ import edu.qc.cs370.macrotracker.fragments.SummaryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-  public static FoodDatabase foodDatabase;
+  public static FoodDatabase foodDatabase; // created by RG
   FragmentManager fragmentManager = getSupportFragmentManager();
   private TextView textMessage;
-  public static User user;
+  public static User user; // created by RG
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void setUserInit(){
+    // method created by RG
     int users = foodDatabase.userDao().getUsers().size();
     user = new User();
     if (users == 0){
