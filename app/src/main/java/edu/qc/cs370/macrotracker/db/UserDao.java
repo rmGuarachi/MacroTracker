@@ -8,6 +8,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+// interface created by RG
 @Dao
 public interface UserDao {
 

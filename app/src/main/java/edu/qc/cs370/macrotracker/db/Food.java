@@ -5,6 +5,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+
+// class create by RG
 @Entity(tableName = "foods")
 public class Food {
 
