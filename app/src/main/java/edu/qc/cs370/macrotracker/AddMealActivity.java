@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import edu.qc.cs370.macrotracker.components.CustomFoodItemAdapter;
@@ -65,12 +66,12 @@ public class AddMealActivity extends AppCompatActivity {
   public void addFoodToMeal(View view) {
     //Food objects will now have a weight given by users. -LX
 
-    TextView foodName = findViewById(R.id.foodName);
-    TextView amountOfCalories = findViewById(R.id.amountOfCalories);
-    TextView amountOfFat = findViewById(R.id.amountOfFat);
-    TextView amountOfCarbs = findViewById(R.id.amountOfCarbs);
-    TextView amountOfProtein = findViewById(R.id.amountOfProtein);
-    TextView weightOfFood = findViewById(R.id.weight); //Enter weight of food.
+    EditText foodName = findViewById(R.id.foodName);
+    EditText amountOfCalories = findViewById(R.id.amountOfCalories);
+    EditText amountOfFat = findViewById(R.id.amountOfFat);
+    EditText amountOfCarbs = findViewById(R.id.amountOfCarbs);
+    EditText amountOfProtein = findViewById(R.id.amountOfProtein);
+    EditText weightOfFood = findViewById(R.id.weight); //Enter weight of food.
 
     String fdName = foodName.getText().toString();
     double fdCals = Double.parseDouble(amountOfCalories.getText().toString());
@@ -83,6 +84,7 @@ public class AddMealActivity extends AppCompatActivity {
     Food food = new Food(scannedUPC, fdName, fdCals, fdFat, fdCarbs, fdProtein, fdWeight);
     Log.i("AddedFood", food.getNameAndWeight() + ", " + food.getSlashLine());
     meal.addFood(food);
+    MainActivity.addFoods(food);
     adapter.notifyDataSetChanged();
   }
 }

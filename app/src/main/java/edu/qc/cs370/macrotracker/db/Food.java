@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "foods")
 public class Food {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
 

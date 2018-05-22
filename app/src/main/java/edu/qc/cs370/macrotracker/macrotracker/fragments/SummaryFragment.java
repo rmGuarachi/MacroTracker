@@ -144,16 +144,16 @@ public class SummaryFragment extends Fragment {
 
     pieChart.invalidate();
 
-    try{
-      edu.qc.cs370.macrotracker.macrotracker.db.User user = new edu.qc.cs370.macrotracker.macrotracker.db.User();
-      user.setName("ny mets is saved in sqlite1");
-      edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().addUser(user);
-    } catch (SQLiteConstraintException E){
-
-    }
-    List<edu.qc.cs370.macrotracker.macrotracker.db.User> users = edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().getUsers();
-    nameView = getView().findViewById(R.id.name);
-    int num = users.size() - 1;
-    nameView.setText(users.get(num).getName());
+//    try{
+//      edu.qc.cs370.macrotracker.macrotracker.db.User user = new edu.qc.cs370.macrotracker.macrotracker.db.User();
+//      user.setName("ny mets is saved in sqlite1");
+//      edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().addUser(user);
+//    } catch (SQLiteConstraintException E){
+//
+//    }
+//    List<edu.qc.cs370.macrotracker.macrotracker.db.User> users = edu.qc.cs370.macrotracker.macrotracker.MainActivity.foodDatabase.userDao().getUsers();
+//    nameView = getView().findViewById(R.id.name);
+//    int num = users.size() - 1;
+//    nameView.setText(users.get(num).getName());
   }
 }

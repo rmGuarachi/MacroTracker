@@ -6,6 +6,10 @@ public class Food {
 	protected String foodName;
 	protected double weight = 0, calorie, carb, protein, fat;
 
+	public Food(){
+		// default constructor // created by RG
+	}
+
 	// Constructor without weight
 	public Food(String id, String name, double calorie, double fat, double carb, double protein) {
 		this.foodId = id;

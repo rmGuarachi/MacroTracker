@@ -115,7 +115,7 @@
             android:gravity="center"
             android:text="Calories"
             android:textSize="18sp"/>
-          <TextView
+          <EditText
             android:id="@+id/amountOfCalories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
             android:gravity="center"
             android:text="Fat"
             android:textSize="18sp"/>
-          <TextView
+          <EditText
             android:id="@+id/amountOfFat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodName"/>
-          <TextView
+          <EditText
             android:id="@+id/amountOfCarbs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
             android:gravity="center"
             android:text="Protein"
             android:textSize="18sp"/>
-          <TextView
+          <EditText
             android:id="@+id/amountOfProtein"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

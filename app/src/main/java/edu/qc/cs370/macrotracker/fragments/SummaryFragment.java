@@ -45,7 +45,9 @@ public class SummaryFragment extends Fragment {
   Date currentDate = Calendar.getInstance().getTime();
   SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE MMMM dd, yyyy");
   String formattedDate;
-  TextView nameView;
+  PieData pieData;
+  TextView currentDateText;
+  ListView mealsOfTheDayList;
 
   //Specific profile's Menu object; this enables viewing previous day's records - LX
   //Menu menu = new Menu(); //Variable no longer needed. Will use MainController - LX
@@ -64,12 +66,12 @@ public class SummaryFragment extends Fragment {
     //Populate Meal from a given profile's menu - LX
     //List<Meal> today_Menu = menu.getMeals(); //Variable no longer needed. Will use MainController - LX
 
-    ListView mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
+    mealsOfTheDayList = view.findViewById(R.id.mealsOfTheDayList);
     //Use ArrayAdapter to avoid HashMap and ArrayList of same information - LX
 
     /* Commenting out this code for now, app crashes if left in. - DV
      */
-    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MainController.getProfile().getTodayMenu().getMeals());
+    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MainActivity.foodItems); // will populate list with information from db - RG
 
     mealsOfTheDayList.setAdapter(adapter);
     /**/
@@ -81,9 +83,15 @@ public class SummaryFragment extends Fragment {
     // Setting up the current date
     formattedDate = dateFormatter.format(currentDate);
 
-    TextView currentDate = getView().findViewById(R.id.currentDate);
-    currentDate.setText(formattedDate);
+    currentDateText = getView().findViewById(R.id.currentDate);
+    currentDateText.setText(formattedDate);
 
+    MainActivity.updateFoods();
+    updateTable();
+
+  }
+
+  public void updateTable(){
     // Begin pie chart code
     PieChart pieChart = getView().findViewById(R.id.pieChart);
 
@@ -93,9 +101,10 @@ public class SummaryFragment extends Fragment {
     */
 
     Menu today_menu = MainController.getProfile().getTodayMenu();
-    float currentFat = (float) today_menu.getFat();
-    float currentCarbs = (float) today_menu.getCarb();
-    float currentProtein = (float) today_menu.getProtein();
+    // TODO REFACTOR - must think OOP
+    float currentFat = (float) MainActivity.user_total_fat; // written by RG - very ugly code but last minute changes to get to objective
+    float currentCarbs = (float) MainActivity.user_total_carbs; // written by RG - very ugly code but last minute changes to get to objective
+    float currentProtein = (float) MainActivity.user_total_protein; // written by RG - very ugly code but last minute changes to get to objective
 
   /*
     float currentFat = 45.0f;
@@ -105,9 +114,16 @@ public class SummaryFragment extends Fragment {
     */
 
     List<PieEntry> entries = new ArrayList<>();
-    entries.add(new PieEntry(currentFat, "Fat"));
-    entries.add(new PieEntry(currentCarbs, "Carbs"));
-    entries.add(new PieEntry(currentProtein, "Protein"));
+    if (currentFat > 0){ // written by RG - for graph display purposes
+      entries.add(new PieEntry(currentFat, "Fat"));
+    }
+    if (currentCarbs > 0){
+      entries.add(new PieEntry(currentCarbs, "Carbs"));
+    }
+    if (currentProtein > 0){
+      entries.add(new PieEntry(currentProtein, "Protein"));
+    }
+
 
     PieDataSet dataSet = new PieDataSet(entries, "");
 
@@ -117,7 +133,7 @@ public class SummaryFragment extends Fragment {
     ContextCompat.getColor(getContext(), R.color.colorProtein);
     dataSet.setColors(new int[] {R.color.colorFat, R.color.colorCarbs, R.color.colorProtein}, getContext());
 
-    PieData pieData = new PieData(dataSet);
+    pieData = new PieData(dataSet);
     pieData.setValueTextSize(24.0f);
     ContextCompat.getColor(getContext(), R.color.colorBlack);
     pieData.setValueTextColor(R.color.colorBlack);
@@ -143,17 +159,23 @@ public class SummaryFragment extends Fragment {
     legend.setEnabled(false);
 
     pieChart.invalidate();
-
-    try{
-      User user = new User();
-      user.setName("ny mets is saved in sqlite1");
-      MainActivity.foodDatabase.userDao().addUser(user);
-    } catch (SQLiteConstraintException E){
-
-    }
-    List<User> users = MainActivity.foodDatabase.userDao().getUsers();
-    nameView = getView().findViewById(R.id.name);
-    int num = users.size() - 1;
-    nameView.setText(users.get(num).getName());
   }
+
+  @Override
+  public void onResume() {
+    // written by RG
+    super.onResume();
+    MainActivity.updateFoods();
+    updateTable();
+  }
+
+  @Override
+  public void onPause() {
+    // written by RG
+    super.onPause();
+    MainActivity.updateFoods();
+    updateTable();
+  }
+
+
 }
